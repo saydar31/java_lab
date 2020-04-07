@@ -3,56 +3,67 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.17">
     <root id="1">
       <ServerVersion>11.7</ServerVersion>
-      <StartupTime>1584545976</StartupTime>
+      <StartupTime>1586059311</StartupTime>
     </root>
     <database id="2" parent="1" name="checktask">
       <ObjectId>24923</ObjectId>
       <Owner>postgres</Owner>
     </database>
-    <database id="3" parent="1" name="javaLab">
+    <database id="3" parent="1" name="informatics_project_db">
+      <ObjectId>33240</ObjectId>
+      <Owner>postgres</Owner>
+    </database>
+    <database id="4" parent="1" name="javaLab">
       <ObjectId>24901</ObjectId>
       <Owner>postgres</Owner>
     </database>
-    <database id="4" parent="1" name="java_lab_project">
+    <database id="5" parent="1" name="java_lab_project">
       <ObjectId>24989</ObjectId>
       <Comment>db for java lab project</Comment>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>726136</IntrospectionStateNumber>
+      <IntrospectionStateNumber>726729</IntrospectionStateNumber>
       <Current>1</Current>
-      <Relations>sequence|table|25000|25002|1
-sequence|table|33220|33222|1
+      <Relations>sequence|table|34189|34191|1
+sequence|table|34200|34202|1
+sequence|table|34208|34210|1
+sequence|table|34222|34224|1
+sequence|table|34233|34235|1
+sequence|table|34318|34320|1
+sequence|table|34326|34328|1
+sequence|table|34340|34342|1
+sequence|table|34247|34249|1
 </Relations>
     </database>
-    <database id="5" parent="1" name="postgres">
+    <database id="6" parent="1" name="postgres">
       <ObjectId>13130</ObjectId>
       <Comment>default administrative connection database</Comment>
       <Owner>postgres</Owner>
     </database>
-    <role id="6" parent="1" name="pg_execute_server_program">
+    <role id="7" parent="1" name="pg_execute_server_program">
       <ObjectId>4571</ObjectId>
     </role>
-    <role id="7" parent="1" name="pg_monitor">
+    <role id="8" parent="1" name="pg_monitor">
       <ObjectId>3373</ObjectId>
     </role>
-    <role id="8" parent="1" name="pg_read_all_settings">
+    <role id="9" parent="1" name="pg_read_all_settings">
       <ObjectId>3374</ObjectId>
     </role>
-    <role id="9" parent="1" name="pg_read_all_stats">
+    <role id="10" parent="1" name="pg_read_all_stats">
       <ObjectId>3375</ObjectId>
     </role>
-    <role id="10" parent="1" name="pg_read_server_files">
+    <role id="11" parent="1" name="pg_read_server_files">
       <ObjectId>4569</ObjectId>
     </role>
-    <role id="11" parent="1" name="pg_signal_backend">
+    <role id="12" parent="1" name="pg_signal_backend">
       <ObjectId>4200</ObjectId>
     </role>
-    <role id="12" parent="1" name="pg_stat_scan_tables">
+    <role id="13" parent="1" name="pg_stat_scan_tables">
       <ObjectId>3377</ObjectId>
     </role>
-    <role id="13" parent="1" name="pg_write_server_files">
+    <role id="14" parent="1" name="pg_write_server_files">
       <ObjectId>4570</ObjectId>
     </role>
-    <role id="14" parent="1" name="postgres">
+    <role id="15" parent="1" name="postgres">
       <ObjectId>10</ObjectId>
       <SuperRole>1</SuperRole>
       <CreateRole>1</CreateRole>
@@ -61,26 +72,26 @@ sequence|table|33220|33222|1
       <Replication>1</Replication>
       <BypassRls>1</BypassRls>
     </role>
-    <schema id="15" parent="4" name="information_schema">
+    <schema id="16" parent="5" name="information_schema">
       <ObjectId>12834</ObjectId>
       <StateNumber>365</StateNumber>
       <Owner>postgres</Owner>
     </schema>
-    <schema id="16" parent="4" name="pg_catalog">
+    <schema id="17" parent="5" name="pg_catalog">
       <ObjectId>11</ObjectId>
       <Comment>system catalog schema</Comment>
       <StateNumber>358</StateNumber>
       <Owner>postgres</Owner>
     </schema>
-    <schema id="17" parent="4" name="public">
+    <schema id="18" parent="5" name="public">
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
       <StateNumber>359</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>726137</IntrospectionStateNumber>
+      <IntrospectionStateNumber>726730</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
-    <access-method id="18" parent="4" name="btree">
+    <access-method id="19" parent="5" name="btree">
       <ObjectId>403</ObjectId>
       <Comment>b-tree index access method</Comment>
       <StateNumber>1</StateNumber>
@@ -88,7 +99,7 @@ sequence|table|33220|33222|1
       <HandlerId>330</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="19" parent="4" name="hash">
+    <access-method id="20" parent="5" name="hash">
       <ObjectId>405</ObjectId>
       <Comment>hash index access method</Comment>
       <StateNumber>1</StateNumber>
@@ -96,7 +107,7 @@ sequence|table|33220|33222|1
       <HandlerId>331</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="20" parent="4" name="gist">
+    <access-method id="21" parent="5" name="gist">
       <ObjectId>783</ObjectId>
       <Comment>GiST index access method</Comment>
       <StateNumber>1</StateNumber>
@@ -104,7 +115,7 @@ sequence|table|33220|33222|1
       <HandlerId>332</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="21" parent="4" name="gin">
+    <access-method id="22" parent="5" name="gin">
       <ObjectId>2742</ObjectId>
       <Comment>GIN index access method</Comment>
       <StateNumber>1</StateNumber>
@@ -112,7 +123,7 @@ sequence|table|33220|33222|1
       <HandlerId>333</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="22" parent="4" name="spgist">
+    <access-method id="23" parent="5" name="spgist">
       <ObjectId>4000</ObjectId>
       <Comment>SP-GiST index access method</Comment>
       <StateNumber>1</StateNumber>
@@ -120,7 +131,7 @@ sequence|table|33220|33222|1
       <HandlerId>334</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="23" parent="4" name="brin">
+    <access-method id="24" parent="5" name="brin">
       <ObjectId>3580</ObjectId>
       <Comment>block range index (BRIN) access method</Comment>
       <StateNumber>1</StateNumber>
@@ -128,7 +139,7 @@ sequence|table|33220|33222|1
       <HandlerId>335</HandlerId>
       <Type>index</Type>
     </access-method>
-    <extension id="24" parent="4" name="plpgsql">
+    <extension id="25" parent="5" name="plpgsql">
       <ObjectId>13116</ObjectId>
       <Comment>PL/pgSQL procedural language</Comment>
       <StateNumber>518</StateNumber>
@@ -136,149 +147,933 @@ sequence|table|33220|33222|1
       <SchemaName>pg_catalog</SchemaName>
       <SchemaId>11</SchemaId>
     </extension>
-    <sequence id="25" parent="17" name="files_id_seq">
-      <ObjectId>33220</ObjectId>
-      <StateNumber>726117</StateNumber>
+    <sequence id="26" parent="18" name="files_id_seq">
+      <ObjectId>34189</ObjectId>
+      <StateNumber>726607</StateNumber>
       <Owner>postgres</Owner>
       <SequenceIdentity>1</SequenceIdentity>
       <CacheSize>1</CacheSize>
-      <DataType>integer</DataType>
+      <DataType>bigint</DataType>
     </sequence>
-    <sequence id="26" parent="17" name="project_user_id_seq">
-      <ObjectId>25000</ObjectId>
-      <StateNumber>726083</StateNumber>
+    <sequence id="27" parent="18" name="forum_discussion_records_id_seq">
+      <ObjectId>34200</ObjectId>
+      <StateNumber>726608</StateNumber>
       <Owner>postgres</Owner>
       <SequenceIdentity>1</SequenceIdentity>
       <CacheSize>1</CacheSize>
-      <DataType>integer</DataType>
+      <DataType>bigint</DataType>
     </sequence>
-    <table id="27" parent="17" name="files">
-      <ObjectId>33222</ObjectId>
+    <sequence id="28" parent="18" name="forum_discussions_id_seq">
+      <ObjectId>34208</ObjectId>
+      <StateNumber>726609</StateNumber>
       <Owner>postgres</Owner>
-      <StateNumber>726116</StateNumber>
-    </table>
-    <table id="28" parent="17" name="project_user">
-      <ObjectId>25002</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>bigint</DataType>
+    </sequence>
+    <sequence id="29" parent="18" name="project_user_id_seq">
+      <ObjectId>34222</ObjectId>
+      <StateNumber>726612</StateNumber>
       <Owner>postgres</Owner>
-      <StateNumber>726131</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>bigint</DataType>
+    </sequence>
+    <sequence id="30" parent="18" name="test_items_id_seq">
+      <ObjectId>34233</ObjectId>
+      <StateNumber>726613</StateNumber>
+      <Owner>postgres</Owner>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>bigint</DataType>
+    </sequence>
+    <sequence id="31" parent="18" name="tests_id_seq">
+      <ObjectId>34247</ObjectId>
+      <StateNumber>726615</StateNumber>
+      <Owner>postgres</Owner>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>bigint</DataType>
+    </sequence>
+    <sequence id="32" parent="18" name="wiki_article_id_seq">
+      <ObjectId>34318</ObjectId>
+      <StateNumber>726707</StateNumber>
+      <Owner>postgres</Owner>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>bigint</DataType>
+    </sequence>
+    <sequence id="33" parent="18" name="wiki_article_version_id_seq">
+      <ObjectId>34326</ObjectId>
+      <StateNumber>726708</StateNumber>
+      <Owner>postgres</Owner>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>bigint</DataType>
+    </sequence>
+    <sequence id="34" parent="18" name="wiki_folder_id_seq">
+      <ObjectId>34340</ObjectId>
+      <StateNumber>726710</StateNumber>
+      <Owner>postgres</Owner>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>bigint</DataType>
+    </sequence>
+    <table id="35" parent="18" name="files">
+      <ObjectId>34191</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726619</StateNumber>
     </table>
-    <column id="29" parent="27" name="id">
+    <table id="36" parent="18" name="forum_discussion_records">
+      <ObjectId>34202</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726620</StateNumber>
+    </table>
+    <table id="37" parent="18" name="forum_discussions">
+      <ObjectId>34210</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726657</StateNumber>
+    </table>
+    <table id="38" parent="18" name="forum_discussions_forum_discussion_records">
+      <ObjectId>34216</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726623</StateNumber>
+    </table>
+    <table id="39" parent="18" name="forumdiscussion_tags">
+      <ObjectId>34219</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726625</StateNumber>
+    </table>
+    <table id="40" parent="18" name="project_user">
+      <ObjectId>34224</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726619</StateNumber>
+    </table>
+    <table id="41" parent="18" name="test_items">
+      <ObjectId>34235</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726626</StateNumber>
+    </table>
+    <table id="42" parent="18" name="testitem_answers">
+      <ObjectId>34244</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726627</StateNumber>
+    </table>
+    <table id="43" parent="18" name="tests">
+      <ObjectId>34249</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726626</StateNumber>
+    </table>
+    <table id="44" parent="18" name="tests_test_items">
+      <ObjectId>34255</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726628</StateNumber>
+    </table>
+    <table id="45" parent="18" name="wiki_article">
+      <ObjectId>34320</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726719</StateNumber>
+    </table>
+    <table id="46" parent="18" name="wiki_article_version">
+      <ObjectId>34328</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726720</StateNumber>
+    </table>
+    <table id="47" parent="18" name="wiki_article_wiki_article_version">
+      <ObjectId>34337</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726722</StateNumber>
+    </table>
+    <table id="48" parent="18" name="wiki_folder">
+      <ObjectId>34342</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726721</StateNumber>
+    </table>
+    <table id="49" parent="18" name="wiki_folder_wiki_article">
+      <ObjectId>34348</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726725</StateNumber>
+    </table>
+    <table id="50" parent="18" name="wiki_folder_wiki_folder">
+      <ObjectId>34353</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>726727</StateNumber>
+    </table>
+    <column id="51" parent="35" name="id">
       <Position>1</Position>
-      <DataType>integer|0s</DataType>
+      <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>726086</StateNumber>
+      <StateNumber>726607</StateNumber>
       <DefaultExpression>nextval(&apos;files_id_seq&apos;::regclass)</DefaultExpression>
-      <TypeId>23</TypeId>
+      <TypeId>20</TypeId>
     </column>
-    <column id="30" parent="27" name="original_name">
+    <column id="52" parent="35" name="current_name">
       <Position>2</Position>
-      <DataType>varchar(100)|0s</DataType>
-      <StateNumber>726086</StateNumber>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726607</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="31" parent="27" name="user_id">
+    <column id="53" parent="35" name="original_name">
       <Position>3</Position>
-      <DataType>integer|0s</DataType>
-      <StateNumber>726086</StateNumber>
-      <TypeId>23</TypeId>
-    </column>
-    <column id="32" parent="27" name="current_path">
-      <Position>4</Position>
-      <DataType>varchar(150)|0s</DataType>
-      <StateNumber>726086</StateNumber>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726607</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="33" parent="27" name="files_pk">
-      <ObjectId>33226</ObjectId>
-      <StateNumber>726116</StateNumber>
+    <column id="54" parent="35" name="user_id">
+      <Position>4</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>726607</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="55" parent="35" name="files_pkey">
+      <ObjectId>34198</ObjectId>
+      <StateNumber>726607</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="34" parent="27" name="files_pk">
-      <ObjectId>33227</ObjectId>
-      <StateNumber>726086</StateNumber>
+    <key id="56" parent="35" name="files_pkey">
+      <ObjectId>34199</ObjectId>
+      <StateNumber>726607</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
-      <UnderlyingIndexName>files_pk</UnderlyingIndexName>
+      <UnderlyingIndexName>files_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="35" parent="27" name="files_project_user_id_fk">
-      <ObjectId>33228</ObjectId>
-      <StateNumber>726086</StateNumber>
+    <foreign-key id="57" parent="35" name="fklwlnoggytblhd0ytytaf7t43d">
+      <ObjectId>34262</ObjectId>
+      <StateNumber>726619</StateNumber>
       <ColNames>user_id</ColNames>
-      <RefTableId>25002</RefTableId>
+      <RefTableId>34224</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>project_user</RefTableName>
       <RefKeyName>project_user_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="36" parent="28" name="id">
+    <column id="58" parent="36" name="id">
       <Position>1</Position>
-      <DataType>integer|0s</DataType>
+      <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>726027</StateNumber>
-      <DefaultExpression>nextval(&apos;project_user_id_seq&apos;::regclass)</DefaultExpression>
-      <TypeId>23</TypeId>
+      <StateNumber>726608</StateNumber>
+      <DefaultExpression>nextval(&apos;forum_discussion_records_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
     </column>
-    <column id="37" parent="28" name="first_name">
+    <column id="59" parent="36" name="date">
       <Position>2</Position>
-      <DataType>varchar(20)|0s</DataType>
-      <StateNumber>726027</StateNumber>
-      <DefaultExpression>&apos;John&apos;::character varying</DefaultExpression>
-      <TypeId>1043</TypeId>
+      <DataType>timestamp|0s</DataType>
+      <StateNumber>726608</StateNumber>
+      <TypeId>1114</TypeId>
     </column>
-    <column id="38" parent="28" name="last_name">
+    <column id="60" parent="36" name="message">
       <Position>3</Position>
-      <DataType>varchar(20)|0s</DataType>
-      <StateNumber>726027</StateNumber>
-      <DefaultExpression>&apos;Doe&apos;::character varying</DefaultExpression>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726608</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="39" parent="28" name="email">
+    <column id="61" parent="36" name="forumdiscussion_id">
       <Position>4</Position>
-      <DataType>varchar(40)|0s</DataType>
-      <StateNumber>726027</StateNumber>
-      <TypeId>1043</TypeId>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>726608</StateNumber>
+      <TypeId>20</TypeId>
     </column>
-    <column id="40" parent="28" name="password_hash">
+    <column id="62" parent="36" name="user_id">
       <Position>5</Position>
-      <DataType>varchar(100)|0s</DataType>
-      <StateNumber>726030</StateNumber>
-      <TypeId>1043</TypeId>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>726608</StateNumber>
+      <TypeId>20</TypeId>
     </column>
-    <column id="41" parent="28" name="is_proofed">
-      <Position>6</Position>
-      <DataType>boolean|0s</DataType>
-      <StateNumber>726034</StateNumber>
-      <DefaultExpression>false</DefaultExpression>
-      <TypeId>16</TypeId>
-    </column>
-    <column id="42" parent="28" name="role">
-      <Position>7</Position>
-      <DataType>varchar(15)|0s</DataType>
-      <StateNumber>726135</StateNumber>
-      <DefaultExpression>&apos;USER&apos;::character varying</DefaultExpression>
-      <TypeId>1043</TypeId>
-    </column>
-    <index id="43" parent="28" name="project_user_pkey">
-      <ObjectId>25008</ObjectId>
-      <StateNumber>726082</StateNumber>
+    <index id="63" parent="36" name="forum_discussion_records_pkey">
+      <ObjectId>34206</ObjectId>
+      <StateNumber>726608</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <index id="44" parent="28" name="project_user_email_index">
-      <ObjectId>25011</ObjectId>
-      <StateNumber>726082</StateNumber>
-      <ColNames>email</ColNames>
+    <key id="64" parent="36" name="forum_discussion_records_pkey">
+      <ObjectId>34207</ObjectId>
+      <StateNumber>726608</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>forum_discussion_records_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="65" parent="36" name="fkntys71cqajpgppn42wys87l22">
+      <ObjectId>34267</ObjectId>
+      <StateNumber>726620</StateNumber>
+      <ColNames>forumdiscussion_id</ColNames>
+      <RefTableId>34210</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>forum_discussions</RefTableName>
+      <RefKeyName>forum_discussions_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="66" parent="36" name="fkeurcmn15d1x0dw644n2ctq37m">
+      <ObjectId>34272</ObjectId>
+      <StateNumber>726621</StateNumber>
+      <ColNames>user_id</ColNames>
+      <RefTableId>34224</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>project_user</RefTableName>
+      <RefKeyName>project_user_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="67" parent="37" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726609</StateNumber>
+      <DefaultExpression>nextval(&apos;forum_discussions_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="68" parent="37" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726609</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="69" parent="37" name="owner_id">
+      <Position>3</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>726609</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="70" parent="37" name="lastchange">
+      <Position>4</Position>
+      <DataType>timestamp|0s</DataType>
+      <StateNumber>726657</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <index id="71" parent="37" name="forum_discussions_pkey">
+      <ObjectId>34214</ObjectId>
+      <StateNumber>726609</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="72" parent="37" name="forum_discussions_pkey">
+      <ObjectId>34215</ObjectId>
+      <StateNumber>726609</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>forum_discussions_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="73" parent="37" name="fkobpxf552o9dmps2a81u47vdud">
+      <ObjectId>34277</ObjectId>
+      <StateNumber>726622</StateNumber>
+      <ColNames>owner_id</ColNames>
+      <RefTableId>34224</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>project_user</RefTableName>
+      <RefKeyName>project_user_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="74" parent="38" name="forumdiscussion_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726610</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="75" parent="38" name="records_id">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726610</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="76" parent="38" name="uk_7ow1cj4ml4jq1uwkd9hwjbk9p">
+      <ObjectId>34258</ObjectId>
+      <StateNumber>726617</StateNumber>
+      <ColNames>records_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="45" parent="28" name="project_user_pkey">
-      <ObjectId>25009</ObjectId>
-      <StateNumber>726027</StateNumber>
+    <key id="77" parent="38" name="uk_7ow1cj4ml4jq1uwkd9hwjbk9p">
+      <ObjectId>34259</ObjectId>
+      <StateNumber>726617</StateNumber>
+      <ColNames>records_id</ColNames>
+      <UnderlyingIndexName>uk_7ow1cj4ml4jq1uwkd9hwjbk9p</UnderlyingIndexName>
+    </key>
+    <foreign-key id="78" parent="38" name="fkasuuji9lr1drid7c8y0vwslbx">
+      <ObjectId>34287</ObjectId>
+      <StateNumber>726624</StateNumber>
+      <ColNames>forumdiscussion_id</ColNames>
+      <RefTableId>34210</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>forum_discussions</RefTableName>
+      <RefKeyName>forum_discussions_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="79" parent="38" name="fks0lfgf2c8371odbxkqeqe08t6">
+      <ObjectId>34282</ObjectId>
+      <StateNumber>726623</StateNumber>
+      <ColNames>records_id</ColNames>
+      <RefTableId>34202</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>forum_discussion_records</RefTableName>
+      <RefKeyName>forum_discussion_records_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="80" parent="39" name="forumdiscussion_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726611</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="81" parent="39" name="tags">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726611</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <foreign-key id="82" parent="39" name="fk3xll6ulbshg4tnjp44mjt8dfd">
+      <ObjectId>34292</ObjectId>
+      <StateNumber>726625</StateNumber>
+      <ColNames>forumdiscussion_id</ColNames>
+      <RefTableId>34210</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>forum_discussions</RefTableName>
+      <RefKeyName>forum_discussions_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="83" parent="40" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726612</StateNumber>
+      <DefaultExpression>nextval(&apos;project_user_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="84" parent="40" name="email">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726612</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="85" parent="40" name="first_name">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726612</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="86" parent="40" name="last_name">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726612</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="87" parent="40" name="password_hash">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726612</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="88" parent="40" name="is_proofed">
+      <Position>6</Position>
+      <DataType>boolean|0s</DataType>
+      <StateNumber>726612</StateNumber>
+      <TypeId>16</TypeId>
+    </column>
+    <column id="89" parent="40" name="role">
+      <Position>7</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726612</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="90" parent="40" name="project_user_pkey">
+      <ObjectId>34231</ObjectId>
+      <StateNumber>726612</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="91" parent="40" name="project_user_pkey">
+      <ObjectId>34232</ObjectId>
+      <StateNumber>726612</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>project_user_pkey</UnderlyingIndexName>
     </key>
+    <column id="92" parent="41" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726613</StateNumber>
+      <DefaultExpression>nextval(&apos;test_items_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="93" parent="41" name="is_multiple_choice">
+      <Position>2</Position>
+      <DataType>boolean|0s</DataType>
+      <StateNumber>726613</StateNumber>
+      <TypeId>16</TypeId>
+    </column>
+    <column id="94" parent="41" name="parameter_name">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726613</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="95" parent="41" name="question">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726613</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="96" parent="41" name="test_id">
+      <Position>5</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>726613</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="97" parent="41" name="test_items_pkey">
+      <ObjectId>34242</ObjectId>
+      <StateNumber>726613</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="98" parent="41" name="test_items_pkey">
+      <ObjectId>34243</ObjectId>
+      <StateNumber>726613</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>test_items_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="99" parent="41" name="fkii63tnbrh4ltrpuoreju43r39">
+      <ObjectId>34297</ObjectId>
+      <StateNumber>726626</StateNumber>
+      <ColNames>test_id</ColNames>
+      <RefTableId>34249</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>tests</RefTableName>
+      <RefKeyName>tests_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="100" parent="42" name="testitem_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726614</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="101" parent="42" name="answers">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726614</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <foreign-key id="102" parent="42" name="fkfge376v4x0bjdnq9vflyd29i2">
+      <ObjectId>34302</ObjectId>
+      <StateNumber>726627</StateNumber>
+      <ColNames>testitem_id</ColNames>
+      <RefTableId>34235</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>test_items</RefTableName>
+      <RefKeyName>test_items_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="103" parent="43" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726615</StateNumber>
+      <DefaultExpression>nextval(&apos;tests_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="104" parent="43" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726615</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="105" parent="43" name="tests_pkey">
+      <ObjectId>34253</ObjectId>
+      <StateNumber>726615</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="106" parent="43" name="tests_pkey">
+      <ObjectId>34254</ObjectId>
+      <StateNumber>726615</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>tests_pkey</UnderlyingIndexName>
+    </key>
+    <column id="107" parent="44" name="test_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726616</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="108" parent="44" name="testitems_id">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726616</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="109" parent="44" name="uk_gxuhkeyt2rdvxao3b62y170jc">
+      <ObjectId>34260</ObjectId>
+      <StateNumber>726618</StateNumber>
+      <ColNames>testitems_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="110" parent="44" name="uk_gxuhkeyt2rdvxao3b62y170jc">
+      <ObjectId>34261</ObjectId>
+      <StateNumber>726618</StateNumber>
+      <ColNames>testitems_id</ColNames>
+      <UnderlyingIndexName>uk_gxuhkeyt2rdvxao3b62y170jc</UnderlyingIndexName>
+    </key>
+    <foreign-key id="111" parent="44" name="fknjsdfrjh983v0exjy389jr2xi">
+      <ObjectId>34312</ObjectId>
+      <StateNumber>726629</StateNumber>
+      <ColNames>test_id</ColNames>
+      <RefTableId>34249</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>tests</RefTableName>
+      <RefKeyName>tests_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="112" parent="44" name="fkijqi47nup2j9qukjvohxfe3by">
+      <ObjectId>34307</ObjectId>
+      <StateNumber>726628</StateNumber>
+      <ColNames>testitems_id</ColNames>
+      <RefTableId>34235</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>test_items</RefTableName>
+      <RefKeyName>test_items_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="113" parent="45" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726707</StateNumber>
+      <DefaultExpression>nextval(&apos;wiki_article_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="114" parent="45" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726707</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="115" parent="45" name="author_id">
+      <Position>3</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>726707</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="116" parent="45" name="currentversion_id">
+      <Position>4</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>726707</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="117" parent="45" name="folder_id">
+      <Position>5</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>726707</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="118" parent="45" name="wiki_article_pkey">
+      <ObjectId>34324</ObjectId>
+      <StateNumber>726707</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="119" parent="45" name="wiki_article_pkey">
+      <ObjectId>34325</ObjectId>
+      <StateNumber>726707</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>wiki_article_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="120" parent="45" name="fk6jcc6naf42u6yu04mp3ef10fu">
+      <ObjectId>34364</ObjectId>
+      <StateNumber>726719</StateNumber>
+      <ColNames>author_id</ColNames>
+      <RefTableId>34224</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>project_user</RefTableName>
+      <RefKeyName>project_user_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="121" parent="45" name="fk887iqval7vp93xi5dsc6v2dkv">
+      <ObjectId>34369</ObjectId>
+      <StateNumber>726720</StateNumber>
+      <ColNames>currentversion_id</ColNames>
+      <RefTableId>34328</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>wiki_article_version</RefTableName>
+      <RefKeyName>wiki_article_version_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="122" parent="45" name="fkgppd0c819hktjooq21g17jpwh">
+      <ObjectId>34374</ObjectId>
+      <StateNumber>726721</StateNumber>
+      <ColNames>folder_id</ColNames>
+      <RefTableId>34342</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>wiki_folder</RefTableName>
+      <RefKeyName>wiki_folder_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="123" parent="46" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726708</StateNumber>
+      <DefaultExpression>nextval(&apos;wiki_article_version_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="124" parent="46" name="creationdate">
+      <Position>2</Position>
+      <DataType>timestamp|0s</DataType>
+      <StateNumber>726708</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="125" parent="46" name="filename">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726708</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="126" parent="46" name="version">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726708</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="127" parent="46" name="wiki_article_version_pkey">
+      <ObjectId>34335</ObjectId>
+      <StateNumber>726708</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="128" parent="46" name="wiki_article_version_pkey">
+      <ObjectId>34336</ObjectId>
+      <StateNumber>726708</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>wiki_article_version_pkey</UnderlyingIndexName>
+    </key>
+    <column id="129" parent="47" name="wikiarticle_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726709</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="130" parent="47" name="versions_id">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726709</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="131" parent="47" name="uk_rhu2aol8f3rde3bb5rtr3a4ci">
+      <ObjectId>34358</ObjectId>
+      <StateNumber>726714</StateNumber>
+      <ColNames>versions_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="132" parent="47" name="uk_rhu2aol8f3rde3bb5rtr3a4ci">
+      <ObjectId>34359</ObjectId>
+      <StateNumber>726714</StateNumber>
+      <ColNames>versions_id</ColNames>
+      <UnderlyingIndexName>uk_rhu2aol8f3rde3bb5rtr3a4ci</UnderlyingIndexName>
+    </key>
+    <foreign-key id="133" parent="47" name="fkdhpbfv73j0gcfpq75eanowwfo">
+      <ObjectId>34384</ObjectId>
+      <StateNumber>726723</StateNumber>
+      <ColNames>wikiarticle_id</ColNames>
+      <RefTableId>34320</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>wiki_article</RefTableName>
+      <RefKeyName>wiki_article_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="134" parent="47" name="fkp3i6xue3x6lt751um7daxysns">
+      <ObjectId>34379</ObjectId>
+      <StateNumber>726722</StateNumber>
+      <ColNames>versions_id</ColNames>
+      <RefTableId>34328</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>wiki_article_version</RefTableName>
+      <RefKeyName>wiki_article_version_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="135" parent="48" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726710</StateNumber>
+      <DefaultExpression>nextval(&apos;wiki_folder_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="136" parent="48" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>726710</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="137" parent="48" name="parentfolder_id">
+      <Position>3</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>726710</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="138" parent="48" name="wiki_folder_pkey">
+      <ObjectId>34346</ObjectId>
+      <StateNumber>726710</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="139" parent="48" name="wiki_folder_pkey">
+      <ObjectId>34347</ObjectId>
+      <StateNumber>726710</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>wiki_folder_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="140" parent="48" name="fkd9m1sg5da6ett7ff1qanf2a28">
+      <ObjectId>34389</ObjectId>
+      <StateNumber>726724</StateNumber>
+      <ColNames>parentfolder_id</ColNames>
+      <RefTableId>34342</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>wiki_folder</RefTableName>
+      <RefKeyName>wiki_folder_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="141" parent="49" name="wikifolder_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726711</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="142" parent="49" name="articles_id">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726711</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="143" parent="49" name="wiki_folder_wiki_article_pkey">
+      <ObjectId>34351</ObjectId>
+      <StateNumber>726711</StateNumber>
+      <ColNames>wikifolder_id
+articles_id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <index id="144" parent="49" name="uk_thm58jfxrqvan9timmffyms6c">
+      <ObjectId>34360</ObjectId>
+      <StateNumber>726716</StateNumber>
+      <ColNames>articles_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="145" parent="49" name="wiki_folder_wiki_article_pkey">
+      <ObjectId>34352</ObjectId>
+      <StateNumber>726711</StateNumber>
+      <ColNames>wikifolder_id
+articles_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>wiki_folder_wiki_article_pkey</UnderlyingIndexName>
+    </key>
+    <key id="146" parent="49" name="uk_thm58jfxrqvan9timmffyms6c">
+      <ObjectId>34361</ObjectId>
+      <StateNumber>726716</StateNumber>
+      <ColNames>articles_id</ColNames>
+      <UnderlyingIndexName>uk_thm58jfxrqvan9timmffyms6c</UnderlyingIndexName>
+    </key>
+    <foreign-key id="147" parent="49" name="fke112lgeav02jn62tw1tecpi6k">
+      <ObjectId>34399</ObjectId>
+      <StateNumber>726726</StateNumber>
+      <ColNames>wikifolder_id</ColNames>
+      <RefTableId>34342</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>wiki_folder</RefTableName>
+      <RefKeyName>wiki_folder_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="148" parent="49" name="fki32nl77e1i4agmfvyep1ds01u">
+      <ObjectId>34394</ObjectId>
+      <StateNumber>726725</StateNumber>
+      <ColNames>articles_id</ColNames>
+      <RefTableId>34320</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>wiki_article</RefTableName>
+      <RefKeyName>wiki_article_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="149" parent="50" name="wikifolder_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726712</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="150" parent="50" name="childfolders_id">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>726712</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="151" parent="50" name="wiki_folder_wiki_folder_pkey">
+      <ObjectId>34356</ObjectId>
+      <StateNumber>726712</StateNumber>
+      <ColNames>wikifolder_id
+childfolders_id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <index id="152" parent="50" name="uk_8uli1dkrptariof9t72603mj5">
+      <ObjectId>34362</ObjectId>
+      <StateNumber>726718</StateNumber>
+      <ColNames>childfolders_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="153" parent="50" name="wiki_folder_wiki_folder_pkey">
+      <ObjectId>34357</ObjectId>
+      <StateNumber>726712</StateNumber>
+      <ColNames>wikifolder_id
+childfolders_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>wiki_folder_wiki_folder_pkey</UnderlyingIndexName>
+    </key>
+    <key id="154" parent="50" name="uk_8uli1dkrptariof9t72603mj5">
+      <ObjectId>34363</ObjectId>
+      <StateNumber>726718</StateNumber>
+      <ColNames>childfolders_id</ColNames>
+      <UnderlyingIndexName>uk_8uli1dkrptariof9t72603mj5</UnderlyingIndexName>
+    </key>
+    <foreign-key id="155" parent="50" name="fkckfsr0mkvgs0coufk6xd0db48">
+      <ObjectId>34409</ObjectId>
+      <StateNumber>726728</StateNumber>
+      <ColNames>wikifolder_id</ColNames>
+      <RefTableId>34342</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>wiki_folder</RefTableName>
+      <RefKeyName>wiki_folder_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="156" parent="50" name="fkscpxk48mxafwipc4pl5q6qt2c">
+      <ObjectId>34404</ObjectId>
+      <StateNumber>726727</StateNumber>
+      <ColNames>childfolders_id</ColNames>
+      <RefTableId>34342</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>wiki_folder</RefTableName>
+      <RefKeyName>wiki_folder_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

@@ -14,13 +14,13 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Component("userRepositoryJdbcTemplateImpl")
 public class UserRepositoryJdbcTemplate implements UserRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
     //language=SQL
-    private final String SQL_SAVE_USER = "insert into project_user (first_name, last_name, email,password_hash) values (?,?,?,?) returning id";
+    private final String SQL_SAVE_USER = "insert into project_user (first_name, last_name, email,password_hash,is_proofed,role) values (?,?,?,?,?,?) returning id";
 
     //language=SQL
     private final String SQL_FIND_USER = "select * from project_user where id=? limit 1";
@@ -59,7 +59,7 @@ public class UserRepositoryJdbcTemplate implements UserRepository {
     }
 
     public void save(User entity) {
-        Long generatedId = jdbcTemplate.queryForObject(SQL_SAVE_USER, ((resultSet, i) -> resultSet.getLong("id")), entity.getFirstName(), entity.getLastName(), entity.getEmail(), entity.getPassWordHash());
+        Long generatedId = jdbcTemplate.queryForObject(SQL_SAVE_USER, ((resultSet, i) -> resultSet.getLong("id")), entity.getFirstName(), entity.getLastName(), entity.getEmail(), entity.getPassWordHash(), entity.isProofed(), entity.getRole().name());
         entity.setId(generatedId);
     }
 
@@ -72,7 +72,7 @@ public class UserRepositoryJdbcTemplate implements UserRepository {
     }
 
     public void update(User entity) {
-        jdbcTemplate.update(SQL_UPDATE, entity.getFirstName(), entity.getLastName(), entity.getEmail(), entity.getPassWordHash(), entity.isProofed(),entity.getRole().name(), entity.getId());
+        jdbcTemplate.update(SQL_UPDATE, entity.getFirstName(), entity.getLastName(), entity.getEmail(), entity.getPassWordHash(), entity.isProofed(), entity.getRole().name(), entity.getId());
     }
 
     public void delete(User entity) {

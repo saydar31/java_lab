@@ -18,7 +18,7 @@ public class UploadFileRepositoryJdbcTemplateImpl implements UploadFileRepositor
     private JdbcTemplate jdbcTemplate;
 
     //language=SQL
-    private final String SQL_SAVE = "insert into files (original_name, user_id, current_path) VALUES (?,?,?) returning id";
+    private final String SQL_SAVE = "insert into files (original_name, user_id, current_name) VALUES (?,?,?) returning id";
 
     //language=SQL
     private final String SQL_FIND = "with files as (select * from files where id = ?) select * from files join project_user on files.user_id=project_user.id";
@@ -27,13 +27,13 @@ public class UploadFileRepositoryJdbcTemplateImpl implements UploadFileRepositor
     private final String SQL_GET_ALL = "select * from files join project_user on files.user_id = project_user.id";
 
     //language=SQL
-    private final String SQL_UPDATE = "update files set (original_name,user_id,current_path) = (?,?,?) where id=?";
+    private final String SQL_UPDATE = "update files set (original_name,user_id,current_name) = (?,?,?) where id=?";
 
     //language=SQL
     private final String SQL_DELETE = "delete from files where id=?";
 
     //language=SQL
-    private final String SQL_FIND_BY_HASH = "with files as(select * from files where current_path = ?), project_user as(select * from project_user) select * from files join project_user on project_user.id=files.user_id";
+    private final String SQL_FIND_BY_HASH = "with files as(select * from files where current_name = ?), project_user as(select * from project_user) select * from files join project_user on project_user.id=files.user_id";
 
     //language=SQL
     private final String SQL_FIND_BY_USER = "select * from files join project_user on files.user_id = project_user.id where user_id=?";
@@ -41,7 +41,7 @@ public class UploadFileRepositoryJdbcTemplateImpl implements UploadFileRepositor
     private RowMapper<UploadFile> uploadFileRowMapper = ((resultSet, i) -> {
         Long id = resultSet.getLong(1);
         String originalName = resultSet.getString("original_name");
-        String currentPath = resultSet.getString("current_path");
+        String currentPath = resultSet.getString("current_name");
         Long userId = resultSet.getLong(5);
         String firstName = resultSet.getString("first_name");
         String lastName = resultSet.getString("last_name");

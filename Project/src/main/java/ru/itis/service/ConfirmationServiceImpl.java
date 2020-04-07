@@ -3,6 +3,7 @@ package ru.itis.service;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import ru.itis.dto.UserDto;
 import ru.itis.model.User;
@@ -18,7 +19,7 @@ public class ConfirmationServiceImpl implements ConfirmationService {
     private Algorithm algorithm;
     private AutoLoginService autoLoginService;
 
-    public ConfirmationServiceImpl(UserRepository userRepository, Algorithm algorithm, AutoLoginService autoLoginService) {
+    public ConfirmationServiceImpl(@Qualifier("userRepositoryJdbcTemplateImpl") UserRepository userRepository, Algorithm algorithm, AutoLoginService autoLoginService) {
         this.userRepository = userRepository;
         this.algorithm = algorithm;
         this.autoLoginService = autoLoginService;

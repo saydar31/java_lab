@@ -10,9 +10,6 @@ import ru.itis.service.SignInService;
 @Controller
 public class SignInController {
 
-    @Autowired
-    private SignInService signInService;
-
     @RequestMapping(value = "/sign_in", method = RequestMethod.GET)
     public ModelAndView getSignInPage() {
         return new ModelAndView("signIn");

@@ -1,9 +1,8 @@
 package ru.itis.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import ru.itis.dto.UserDto;
 import ru.itis.model.Role;
 import ru.itis.model.User;
 import ru.itis.repositories.UserRepository;
@@ -21,7 +20,7 @@ public class SignUpServiceImpl implements SignUpService {
 
     private final AutoLoginService autoLoginService;
 
-    public SignUpServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, MailService mailService, ConfirmationService confirmationService, AutoLoginService autoLoginService) {
+    public SignUpServiceImpl(@Qualifier("userRepositoryJdbcTemplateImpl") UserRepository userRepository, PasswordEncoder passwordEncoder, MailService mailService, ConfirmationService confirmationService, AutoLoginService autoLoginService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.mailService = mailService;

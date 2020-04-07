@@ -9,7 +9,7 @@ import ru.itis.dto.UploadingDto;
 import ru.itis.model.UploadFile;
 import ru.itis.model.User;
 import ru.itis.repositories.UploadFileRepository;
-import ru.itis.service.util.FileManager;
+import ru.itis.service.util.UploadFileManager;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class UploadServiceImpl implements UploadFileService {
     private UploadFileRepository uploadFileRepository;
 
     @Autowired
-    private FileManager fileManager;
+    private UploadFileManager uploadFileManager;
 
     private Random random = new Random();
 
@@ -42,7 +42,7 @@ public class UploadServiceImpl implements UploadFileService {
     public UploadingDto doService(MultipartFile multipartFile, User user) {
         String extension = FilenameUtils.getExtension(multipartFile.getOriginalFilename());
         String newFilename = Long.toString(System.currentTimeMillis()) + System.nanoTime() + randomAlphaNumeric() + "." + extension;
-        fileManager.saveToStorage(multipartFile, newFilename);
+        uploadFileManager.saveToStorage(multipartFile, newFilename);
         UploadFile uploadFile = UploadFile.builder()
                 .originalName(multipartFile.getOriginalFilename())
                 .user(user)
@@ -64,7 +64,7 @@ public class UploadServiceImpl implements UploadFileService {
         } else {
             throw new IllegalArgumentException();
         }
-        return fileManager.getPath(uploadFile.getCurrentPath());
+        return uploadFileManager.getPath(uploadFile.getCurrentPath());
     }
 
     @Override

@@ -15,7 +15,6 @@
         [].forEach.call(files, function (file, i, files) {
             formData.append("file", file);
         });
-
         $.ajax({
             type: "POST",
             url: "/files",
@@ -24,7 +23,7 @@
             contentType: false
         })
             .done(function (response) {
-                alert(response)
+                alert('ok')
             })
             .fail(function () {
                 alert('Error')
@@ -38,6 +37,7 @@
     </button>
     <input type="hidden" id="file_hidden">
     <div class="filename"></div>
+    <ul id="list"></ul>
 </div>
 </body>
 </html>

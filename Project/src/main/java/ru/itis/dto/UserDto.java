@@ -17,10 +17,9 @@ public class UserDto {
     private String lastName;
     private String email;
     private boolean proofed;
-    private Role role;
 
     public static UserDto from(User user) {
-        return new UserDto(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.isProofed(), user.getRole());
+        return new UserDto(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.isProofed());
     }
 
 }

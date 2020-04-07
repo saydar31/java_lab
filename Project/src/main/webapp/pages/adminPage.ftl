@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
+<p>Hi,${adminName}</p>
 <ul>
     <#list users as user>
     <li>${user.email}</li>
