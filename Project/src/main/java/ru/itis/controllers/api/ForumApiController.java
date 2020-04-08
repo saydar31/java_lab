@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.dto.ForumDiscussionDto;
+import ru.itis.dto.PageSizeDto;
 import ru.itis.dto.SuccessOperationDto;
 import ru.itis.service.ForumService;
 
@@ -18,8 +19,8 @@ public class ForumApiController {
     }
 
     @GetMapping("/api/forum")
-    public ResponseEntity<List<ForumDiscussionDto>> getForumDiscussions(@RequestParam(value = "p", required = false) Integer page, @RequestParam(value = "s", required = false) Integer size) {
-        return ResponseEntity.ok(forumService.getForumDiscussions(page, size));
+    public ResponseEntity<List<ForumDiscussionDto>> getForumDiscussions(PageSizeDto pageSizeDto) {
+        return ResponseEntity.ok(forumService.getForumDiscussions(pageSizeDto));
     }
 
     @DeleteMapping("/api/forum/forum_record/{record-id:\\d+}")

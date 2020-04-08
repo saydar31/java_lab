@@ -54,7 +54,7 @@ public class WikiController {
     }
 
     @GetMapping("/wiki/article/editor")
-    @PreAuthorize(("isAuthenticated()"))
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView getEditor(@RequestParam("folderId") Long folderId) {
         ModelAndView modelAndView = new ModelAndView("articleEditor");
         modelAndView.addObject("folderId", folderId);
@@ -63,7 +63,7 @@ public class WikiController {
 
     @PostMapping("/wiki/{folder-id:\\d+}/article/editor")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView addArticle(@PathVariable("folder-id") Long folderId, String article, String name, Authentication authentication) {
+    public ModelAndView addArticle(@PathVariable("folder-id") Long folderId, @RequestParam("article") String article, @RequestParam("name") String name, Authentication authentication) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         WikiArticleLeafDto articleDto = wikiService.createArticle(folderId, name, article, userDetails.getUser());
         return new ModelAndView("redirect:/wiki/article/" + articleDto.getId());
@@ -78,6 +78,22 @@ public class WikiController {
         WikiArticleLeafDto leafDto = wikiService.createArticle(folderId, fileName, user, multipartFile);
         modelAndView.addObject("article", leafDto);
         return modelAndView;
+    }
+
+    @GetMapping("/wiki/article/{article-id:\\d+}/edit")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView getArticleEditor(@PathVariable("article-id") Long articleId) {
+        ModelAndView modelAndView = new ModelAndView("editor");
+        modelAndView.addObject("articleId", articleId);
+        modelAndView.addObject("articleMdDto", wikiService.getMdArticleById(articleId));
+        return modelAndView;
+    }
+
+    @PostMapping("/wiki/article/{article-id:\\d+}/edit")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView edit(@PathVariable("article-id") Long articleId, @RequestParam("newContent") String newContent, @RequestParam("version") String version) {
+        wikiService.updateArticle(articleId, newContent, version);
+        return new ModelAndView("redirect:/wiki/article/" + articleId);
     }
 
 }

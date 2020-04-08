@@ -1,10 +1,7 @@
 package ru.itis.service;
 
 import org.springframework.stereotype.Component;
-import ru.itis.dto.DiscussionDto;
-import ru.itis.dto.ForumDiscussionDto;
-import ru.itis.dto.ForumDiscussionRecordDto;
-import ru.itis.dto.RecordDto;
+import ru.itis.dto.*;
 import ru.itis.model.ForumDiscussion;
 import ru.itis.model.ForumDiscussionRecord;
 import ru.itis.model.User;
@@ -25,14 +22,15 @@ public class ForumServiceImpl implements ForumService {
     }
 
     @Override
-    public List<ForumDiscussionDto> getForumDiscussions(Integer page, Integer size) {
-        if (size == null) {
-            size = 20;
+    public List<ForumDiscussionDto> getForumDiscussions(PageSizeDto pageSizeDto) {
+
+        if (pageSizeDto.getS() == null) {
+            pageSizeDto.setS(20);
         }
-        if (page == null) {
-            page = 0;
+        if (pageSizeDto.getP() == null) {
+            pageSizeDto.setP(0);
         }
-        return forumDiscussionRepository.getForumDiscussions(page, size).stream().map(ForumDiscussionDto::from).collect(Collectors.toList());
+        return forumDiscussionRepository.getForumDiscussions(pageSizeDto.getP(), pageSizeDto.getS()).stream().map(ForumDiscussionDto::from).collect(Collectors.toList());
     }
 
     @Override
@@ -56,13 +54,15 @@ public class ForumServiceImpl implements ForumService {
     }
 
     @Override
-    public ForumDiscussionDto getForumDiscussionPaginatedRecords(Long id, Integer page, Integer size) {
-        if (size == null) {
-            size = 20;
+    public ForumDiscussionDto getForumDiscussionPaginatedRecords(Long id, PageSizeDto pageSizeDto) {
+        if (pageSizeDto.getS() == null) {
+            pageSizeDto.setS(20);
         }
-        if (page == null) {
-            page = 0;
+        if (pageSizeDto.getP() == null) {
+            pageSizeDto.setP(0);
         }
+        int page = pageSizeDto.getP();
+        int size = pageSizeDto.getS();
         ForumDiscussionDto result = getForumDiscussion(id);
         List<ForumDiscussionRecordDto> recordList = result.getRecords();
         int recordListLength = recordList.size();

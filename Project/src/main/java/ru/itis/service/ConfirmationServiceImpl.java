@@ -5,7 +5,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import ru.itis.dto.UserDto;
 import ru.itis.model.User;
 import ru.itis.repositories.UserRepository;
 
@@ -17,12 +16,10 @@ public class ConfirmationServiceImpl implements ConfirmationService {
     private UserRepository userRepository;
 
     private Algorithm algorithm;
-    private AutoLoginService autoLoginService;
 
-    public ConfirmationServiceImpl(@Qualifier("userRepositoryJdbcTemplateImpl") UserRepository userRepository, Algorithm algorithm, AutoLoginService autoLoginService) {
+    public ConfirmationServiceImpl(@Qualifier("userRepositoryJdbcTemplateImpl") UserRepository userRepository, Algorithm algorithm) {
         this.userRepository = userRepository;
         this.algorithm = algorithm;
-        this.autoLoginService = autoLoginService;
     }
 
     @Override
@@ -42,7 +39,6 @@ public class ConfirmationServiceImpl implements ConfirmationService {
         if (userCandidate.isPresent()) {
             User user = userCandidate.get();
             userRepository.makeProofed(user);
-            autoLoginService.autoLogin(user);
         } else {
             throw new IllegalArgumentException();
         }

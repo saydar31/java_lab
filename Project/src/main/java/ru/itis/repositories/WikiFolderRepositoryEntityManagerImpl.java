@@ -35,7 +35,10 @@ public class WikiFolderRepositoryEntityManagerImpl implements WikiFolderReposito
     @Override
     @Transactional
     public void update(WikiFolder entity) {
-        entityManager.merge(entity);
+        WikiFolder wikiFolder = entityManager.merge(entity);
+        entity.setArticles(wikiFolder.getArticles());
+        entity.setChildFolders(entity.getChildFolders());
+        entity.setName(wikiFolder.getName());
     }
 
     @Override

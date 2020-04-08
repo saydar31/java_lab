@@ -5,11 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Builder
-public class PageSizeDto {
-    private Integer p;
-    private Integer s;
+public class WikiArticleMdDto {
+    private Long id;
+    private String name;
+    private String mdContent;
 }

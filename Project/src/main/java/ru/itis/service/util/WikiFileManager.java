@@ -4,13 +4,14 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.itis.model.WikiArticle;
 import ru.itis.model.WikiFolder;
 
-import java.io.File;
-
 public interface WikiFileManager {
-    File getCurrentVersionFile(WikiArticle wikiArticle);
+    String getCurrentVersionFileContent(WikiArticle wikiArticle);
 
-    void createArticle( WikiArticle article, MultipartFile multipartFile);
-    void createArticle( WikiArticle article);
+    void createArticle(WikiArticle article, MultipartFile multipartFile);
+
+    void createArticle(WikiArticle article, String content);
 
     void createFolder(WikiFolder child);
+
+    void setNewVersionContent(WikiArticle article, String newContent);
 }

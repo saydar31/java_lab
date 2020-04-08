@@ -64,7 +64,7 @@ public class UserRepositoryJdbcTemplate implements UserRepository {
     }
 
     public Optional<User> find(Long key) {
-        return Optional.of(jdbcTemplate.queryForObject(SQL_FIND_USER, userRowMapper, key));
+        return Optional.ofNullable(jdbcTemplate.queryForObject(SQL_FIND_USER, userRowMapper, key));
     }
 
     public List<User> getAll() {
@@ -85,7 +85,7 @@ public class UserRepositoryJdbcTemplate implements UserRepository {
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return Optional.of(jdbcTemplate.queryForObject(SQL_EMAIL_EXISTS, userRowMapper, email));
+        return Optional.ofNullable(jdbcTemplate.queryForObject(SQL_EMAIL_EXISTS, userRowMapper, email));
 
     }
 

@@ -18,14 +18,11 @@ public class SignUpServiceImpl implements SignUpService {
 
     private ConfirmationService confirmationService;
 
-    private final AutoLoginService autoLoginService;
-
-    public SignUpServiceImpl(@Qualifier("userRepositoryJdbcTemplateImpl") UserRepository userRepository, PasswordEncoder passwordEncoder, MailService mailService, ConfirmationService confirmationService, AutoLoginService autoLoginService) {
+    public SignUpServiceImpl(@Qualifier("userRepositoryJdbcTemplateImpl") UserRepository userRepository, PasswordEncoder passwordEncoder, MailService mailService, ConfirmationService confirmationService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.mailService = mailService;
         this.confirmationService = confirmationService;
-        this.autoLoginService = autoLoginService;
     }
 
     @Override
@@ -38,6 +35,5 @@ public class SignUpServiceImpl implements SignUpService {
                 .build();
         userRepository.save(user);
         mailService.sendSignUpLetter(user, confirmationService.getVerificationString(user));
-        //autoLoginService.autoLogin(user);
     }
 }

@@ -6,10 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ru.itis.dto.DiscussionDto;
 import ru.itis.dto.ForumDiscussionDto;
+import ru.itis.dto.PageSizeDto;
 import ru.itis.dto.RecordDto;
 import ru.itis.model.User;
 import ru.itis.security.details.UserDetailsImpl;
@@ -24,11 +24,11 @@ public class ForumController {
     }
 
     @GetMapping("/forum")
-    public ModelAndView getForumPage(@RequestParam(value = "p", required = false, defaultValue = "0") Integer page, @RequestParam(value = "s", required = false,defaultValue = "20") Integer size) {
+    public ModelAndView getForumPage(PageSizeDto pageSizeDto) {
         ModelAndView modelAndView = new ModelAndView("forums");
-        modelAndView.addObject("page", page);
-        modelAndView.addObject("size", size);
-        modelAndView.addObject("discussions", forumService.getForumDiscussions(page, size));
+        modelAndView.addObject("discussions", forumService.getForumDiscussions(pageSizeDto));
+        modelAndView.addObject("page", pageSizeDto.getP());
+        modelAndView.addObject("size", pageSizeDto.getS());
         return modelAndView;
     }
 
@@ -43,11 +43,11 @@ public class ForumController {
 
     @GetMapping("/forum/{forum-id:\\d+}")
     @PreAuthorize("permitAll()")
-    public ModelAndView getForumDiscussionPage(@PathVariable("forum-id") Long id, @RequestParam(value = "p", required = false,defaultValue = "0") Integer page, @RequestParam(value = "s", required = false,defaultValue = "20") Integer size) {
+    public ModelAndView getForumDiscussionPage(@PathVariable("forum-id") Long id,PageSizeDto pageSizeDto) {
         ModelAndView modelAndView = new ModelAndView("forumDiscussion");
-        modelAndView.addObject("discussion", forumService.getForumDiscussionPaginatedRecords(id, page, size));
-        modelAndView.addObject("page",page);
-        modelAndView.addObject("size", size);
+        modelAndView.addObject("discussion", forumService.getForumDiscussionPaginatedRecords(id, pageSizeDto));
+        modelAndView.addObject("page", pageSizeDto.getP());
+        modelAndView.addObject("size", pageSizeDto.getP());
         return modelAndView;
     }
 

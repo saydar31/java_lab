@@ -32,6 +32,9 @@
 <label for="name">article name</label><input type="text" id="name" placeholder="article name">
 <input type="file" placeholder="file" id="file" accept="text/markdown">
 <button onclick="add()">add</button>
+<p><a href="/wiki/article/editor?folderId=${folder.id}">
+        <button>add article in editor</button>
+    </a></p>
 <script>
     function add() {
         let formData = new FormData();

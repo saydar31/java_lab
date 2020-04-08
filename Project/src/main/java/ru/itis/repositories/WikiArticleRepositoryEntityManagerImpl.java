@@ -35,7 +35,12 @@ public class WikiArticleRepositoryEntityManagerImpl implements WikiArticleReposi
     @Override
     @Transactional
     public void update(WikiArticle entity) {
-
+        WikiArticle mergedArticle = entityManager.merge(entity);
+        entity.setCurrentVersion(mergedArticle.getCurrentVersion());
+        entity.setAuthor(mergedArticle.getAuthor());
+        entity.setFolder(mergedArticle.getFolder());
+        entity.setName(mergedArticle.getName());
+        entity.setVersions(mergedArticle.getVersions());
     }
 
     @Override

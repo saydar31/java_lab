@@ -8,11 +8,6 @@ import org.springframework.stereotype.Component;
 import ru.itis.model.WikiArticle;
 import ru.itis.service.util.WikiFileManager;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-
 @Component
 public class WikiContentServiceImpl implements WikiContentService {
     @Autowired
@@ -26,19 +21,17 @@ public class WikiContentServiceImpl implements WikiContentService {
 
     @Override
     public String getHtmlContent(WikiArticle article) {
-        File mdFile = fileManager.getCurrentVersionFile(article);
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(mdFile));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line = bufferedReader.readLine();
-            while (line != null) {
-                stringBuilder.append(line).append('\n');
-                line = bufferedReader.readLine();
-            }
-            Node node = parser.parse(stringBuilder.toString());
-            return renderer.render(node);
-        } catch (IOException e) {
-            throw new IllegalArgumentException();
-        }
+        String mdContent = fileManager.getCurrentVersionFileContent(article);
+        Node node = parser.parse(mdContent);
+        return renderer.render(node);
+    }
+
+    public String getMdContent(WikiArticle article) {
+        return fileManager.getCurrentVersionFileContent(article);
+    }
+
+    @Override
+    public void setNewContent(WikiArticle article, String newContent) {
+        fileManager.setNewVersionContent(article,newContent);
     }
 }
