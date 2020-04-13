@@ -11,3 +11,7 @@
 [Страница админа с админом](https://drive.google.com/open?id=1hss-OZU-gzfWqrNXCCaeMDkNEvRt_qTB)
 
 [Страница админа для не админа](https://drive.google.com/open?id=18aJxCdYk6J5armhtanSAQO9kIogyy-Rx)
+
+Long polling
+
+[Видео](https://drive.google.com/open?id=1tJz5h2KCqGd0gBqDJHnn1g6H7lhMU2jX)
