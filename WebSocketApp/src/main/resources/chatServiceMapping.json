@@ -1,0 +1,6 @@
+{
+    "mapping":{
+            "message":"ru.itis.service.MessageChatService",
+            "joinChat":"ru.itis.service.JoinChatService"
+        }
+}

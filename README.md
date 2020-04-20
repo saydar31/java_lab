@@ -15,3 +15,7 @@
 Long polling
 
 [Видео](https://drive.google.com/open?id=1tJz5h2KCqGd0gBqDJHnn1g6H7lhMU2jX)
+
+WebSocket
+
+[Видео](https://drive.google.com/open?id=12KNsHyYkReEMKDLNoSPSXB8NaI9pZKvU)
