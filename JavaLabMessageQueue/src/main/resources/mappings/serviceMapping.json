@@ -1,0 +1,35 @@
+{
+  "send": {
+    "beanClassName": "ru.itis.javalabmessagequeue.service.SendService",
+    "methodName": "doService",
+    "argClassNames": [
+      "ru.itis.javalabmessagequeue.dto.JlmqSendMessage"
+    ],
+    "returning": true
+  },
+  "subscribe": {
+    "beanClassName": "ru.itis.javalabmessagequeue.service.SubscribeService",
+    "methodName": "doService",
+    "argClassNames": [
+      "ru.itis.javalabmessagequeue.dto.JlmqSubscribeMessage",
+      "org.springframework.web.socket.WebSocketSession"
+    ],
+    "returning": true
+  },
+  "accept": {
+    "beanClassName": "ru.itis.javalabmessagequeue.service.AcceptService",
+    "methodName": "doService",
+    "argClassNames": [
+      "ru.itis.javalabmessagequeue.dto.JlmqAcceptMessage"
+    ],
+    "returning": false
+  },
+  "complete": {
+    "beanClassName": "ru.itis.javalabmessagequeue.service.CompleteService",
+    "methodName": "doService",
+    "argClassNames": [
+      "ru.itis.javalabmessagequeue.dto.JlmqCompleteMessage"
+    ],
+    "returning": false
+  }
+}
