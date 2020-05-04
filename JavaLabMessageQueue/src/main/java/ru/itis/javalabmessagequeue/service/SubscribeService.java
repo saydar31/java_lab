@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface SubscribeService {
     List<JlmqReceiveMessage> doService(JlmqSubscribeMessage subscribeMessage, WebSocketSession session);
+    List<JlmqReceiveMessage> doService(String queueName);
 }

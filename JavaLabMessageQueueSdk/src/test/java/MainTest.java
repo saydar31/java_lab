@@ -14,6 +14,7 @@ public class MainTest {
     public static void main(String[] args) {
         JlmqConfiguration jlmqConfiguration = JlmqConfiguration.builder()
                 .url("ws://localhost:1337/endpoint")
+                .authenticationKey("qwerty007")
                 .build();
         JlmqConfigurer configurer = new JlmqConfigurer();
         try {
@@ -23,7 +24,7 @@ public class MainTest {
             Consumer consumer = connector.consumer().forQueue("defaultQueue").onReceive(handler).create();
             Producer producer = connector.producer().forQueue("defaultQueue").create();
             Scanner scanner = new Scanner(System.in);
-            String waiter = scanner.nextLine();
+            //String waiter = scanner.nextLine();
             List<String> names = new ArrayList<>();
             names.add("1");
             names.add("2");

@@ -57,6 +57,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.etolmach.spring/jcommander-spring-boot-starter -->
+        <dependency>
+            <groupId>com.etolmach.spring</groupId>
+            <artifactId>jcommander-spring-boot-starter</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

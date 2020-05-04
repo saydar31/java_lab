@@ -1,4 +1,4 @@
-package ru.itis.javalabmessagequeue.controllers;
+package ru.itis.javalabmessagequeue.controllers.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

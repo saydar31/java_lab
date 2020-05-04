@@ -1,4 +1,4 @@
-package ru.itis.javalabmessagequeue.sdk.configuration;
+package ru.itis.javalabmessagequeue.sdk.stomp.configuration;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

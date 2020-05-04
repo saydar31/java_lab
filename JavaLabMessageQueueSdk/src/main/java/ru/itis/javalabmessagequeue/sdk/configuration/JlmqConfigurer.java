@@ -23,13 +23,13 @@ import ru.itis.javalabmessagequeue.sdk.consumer.SimpleConsumerMapperImpl;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.Executors;
 
 public class JlmqConfigurer {
-    @Getter
-    private JlmqWebSocket webSocket;
 
     public Connector configureConnector(JlmqConfiguration configuration) throws URISyntaxException {
         String url = configuration.getUrl();
@@ -40,12 +40,20 @@ public class JlmqConfigurer {
         ConsumerMapper consumerMapper = new SimpleConsumerMapperImpl();
         ReceiveMessageListHandler listHandler = new ReceiveMessageListHandlerImpl(consumerMapper, Executors.newSingleThreadExecutor());
         Receiver receiver = new ReceiverImpl(objectMapper, listHandler);
+        Map<String, String> headers = new HashMap<>();
+        if (configuration.getAuthenticationKey() != null) {
+            headers.put("Authorization", configuration.getAuthenticationKey());
+        }
         for (int i = 0; i < connectionCount; i++) {
-            JlmqWebSocket webSocket = new JlmqWebSocket(uri, receiver);
+            JlmqWebSocket webSocket;
+            if (configuration.getAuthenticationKey() != null) {
+                webSocket = new JlmqWebSocket(uri, headers, receiver);
+            } else {
+                webSocket = new JlmqWebSocket(uri, receiver);
+            }
             Deque<String> stringDeque = new LinkedList<>();
             senderDeque.addLast(new SenderImpl(objectMapper, webSocket, stringDeque));
             webSocket.connect();
-            this.webSocket = webSocket;
         }
         SenderPool senderPool = new SenderPoolImpl(senderDeque);
         ProducerClient producerClient = new ProducerClientImpl(senderPool);

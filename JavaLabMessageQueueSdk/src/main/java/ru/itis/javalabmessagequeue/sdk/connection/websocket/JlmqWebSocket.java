@@ -5,6 +5,7 @@ import org.java_websocket.handshake.ServerHandshake;
 import ru.itis.javalabmessagequeue.sdk.connection.receiver.Receiver;
 
 import java.net.URI;
+import java.util.Map;
 
 public class JlmqWebSocket extends WebSocketClient {
     private final Receiver receiver;
@@ -12,6 +13,11 @@ public class JlmqWebSocket extends WebSocketClient {
 
     public JlmqWebSocket(URI serverUri, Receiver receiver) {
         super(serverUri);
+        this.receiver = receiver;
+    }
+
+    public JlmqWebSocket(URI serverUri, Map<String, String> httpHeaders, Receiver receiver) {
+        super(serverUri, httpHeaders);
         this.receiver = receiver;
     }
 

@@ -30,7 +30,17 @@ public class SubscribeServiceImpl implements SubscribeService {
     @Transactional
     public List<JlmqReceiveMessage> doService(JlmqSubscribeMessage subscribeMessage, WebSocketSession session) {
         subscribeMapper.map(subscribeMessage.getQueueName(), session);
-        List<Message> messages = messageRepository.findByCompletedFalseAndQueueName(subscribeMessage.getQueueName());
+        String queueName = subscribeMessage.getQueueName();
+        return getJlmqReceiveMessages(queueName);
+    }
+
+    @Override
+    public List<JlmqReceiveMessage> doService(String queueName) {
+        return getJlmqReceiveMessages(queueName);
+    }
+
+    private List<JlmqReceiveMessage> getJlmqReceiveMessages(String queueName) {
+        List<Message> messages = messageRepository.findByCompletedFalseAndQueueName(queueName);
         Function<Message, JlmqReceiveMessage> function = message ->
         {
             try {
