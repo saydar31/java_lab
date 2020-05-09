@@ -1,16 +1,18 @@
 <html>
+<#import "/spring.ftl" as spring/>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign in</title>
+    <title><@spring.message "sign.in.title"></@spring.message></title>
 </head>
 <body>
 <form action="/sign_in" method="post">
-    <label>email:<input type="email" name="email"></label><br>
-    <label>password:<input type="password" name="password"></label><br>
-    <input type="submit" value="sign in">
+    <input hidden type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+    <label><@spring.message "sign.in.email.field"/>:<input type="email" name="email"></label><br>
+    <label><@spring.message "sign.in.password.field"/>:<input type="password" name="password"></label><br>
+    <input type="submit" value="<@spring.message "sign.in.title"></@spring.message>">
 </form>
 </body>
 </html>

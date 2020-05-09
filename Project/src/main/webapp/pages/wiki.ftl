@@ -2,6 +2,8 @@
 <head>
     <title>Wiki</title>
     <meta charset="UTF-8">
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
 </head>
 <body>
 <h1>${folder.name}</h1>
@@ -37,6 +39,8 @@
     </a></p>
 <script>
     function add() {
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
         let formData = new FormData();
         let files = ($('#file'))[0]['files'];
         [].forEach.call(files, function (file, i, files) {
@@ -48,7 +52,10 @@
             url: "/wiki/${folder.id}/article/file",
             data: formData,
             processData: false,
-            contentType: false
+            contentType: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(header,token)
+            }
         }).done(function (response) {
             let link = response['article']['id'];
             let aOpen = "<a href='/wiki/article/" + link + "'>";
@@ -60,6 +67,8 @@
 </script>
 <script>
     function newFolder() {
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
         let formData = new FormData();
         formData.append("folderName", document.getElementById('folderName').value)
         $.ajax({
@@ -67,7 +76,10 @@
             url: '/wiki/folder/${folder.id}',
             data: formData,
             processData: false,
-            contentType: false
+            contentType: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(header,token)
+            }
         }).done(function (response) {
             let folderName = response['folderName'];
             let folderId = response['folderId'];

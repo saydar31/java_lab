@@ -5,15 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Min;
-
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Builder
-public class PageSizeDto {
-    @Min(value = 0)
-    private Integer p;
-    @Min(1)
-    private Integer s;
+public class InfoDto {
+    private String info;
 }

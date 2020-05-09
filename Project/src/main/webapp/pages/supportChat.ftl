@@ -2,6 +2,8 @@
 <head>
     <title>SupportChat</title>
     <meta charset="UTF-8">
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
 </head>
 <body onload="receive()">
 <ul id="messages">
@@ -16,12 +18,17 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
     function receive() {
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
         $.ajax(
             {
                 url: "${sendingUrl}",
                 method: "GET",
                 processData: false,
                 contentType: false,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(header,token)
+                },
                 success: function (response) {
                     response.forEach(element =>
                         $('#messages').append("<li>" + element['userDto']['firstName'] + ' ' + element['userDto']['lastName'] + ': ' + element['text'] + "</li>")
@@ -33,6 +40,8 @@
     }
 
     function send() {
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
         let formData = new FormData();
         formData.append('text', document.getElementById('textarea').value);
         formData.append('senderId', document.getElementById('senderId').value)
@@ -45,7 +54,10 @@
                 contentType: false,
                 complete: function () {
 
-                }
+                },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(header,token)
+                },
             }
         )
     }

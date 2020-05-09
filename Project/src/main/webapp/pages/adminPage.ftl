@@ -1,6 +1,7 @@
 <html lang="en">
+<#import "/spring.ftl" as spring/>
 <head>
-    <title>Admin page</title>
+    <title><@spring.message "admin.page.title"></@spring.message></title>
     <meta charset="UTF-8">
 </head>
 <body>

@@ -78,6 +78,7 @@
 </style>
 <body>
 <form action="/sign_up" method="post" style="border:1px solid #ccc">
+    <input hidden type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <div class="container">
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>

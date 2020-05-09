@@ -6,6 +6,7 @@
 <body>
 <h1>Subjects</h1><br>
 <form action="/forum" method="post">
+    <input hidden type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <label>
         <input type="text" name="name">
     </label>

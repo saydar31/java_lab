@@ -5,6 +5,7 @@
 <body>
 <h1>${articleMdDto.name}</h1>
 <form action="/wiki/article/${articleId}/edit" method="post">
+    <input hidden type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <label>Version:
         <input type="text" name="version">
     </label><br>

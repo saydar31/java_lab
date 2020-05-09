@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic()
                 .and()
-                .csrf().disable();
+                .csrf().ignoringAntMatchers("/api/**");
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
         http.formLogin()
                 .loginPage("/sign_in")
@@ -56,6 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .failureUrl("/sign_in?error")
                 .permitAll();
+        http.logout().logoutUrl("/logout")
+                .logoutSuccessUrl("/sign_in?logout");
         http.addFilterBefore(jwtAuthenticationFilter, BasicAuthenticationFilter.class);
     }
 

@@ -11,6 +11,7 @@
 </style>
 <h1>Editor</h1>
 <form class="center" action="/wiki/${folderId}/article/editor" method="post">
+    <input hidden type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <label>Name
         <input type="text" name="name" placeholder="name"><br>
     </label>

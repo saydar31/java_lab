@@ -9,6 +9,9 @@ import org.commonmark.ext.gfm.tables.TablesExtension;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.Renderer;
 import org.commonmark.renderer.html.HtmlRenderer;
+import org.hibernate.boot.internal.MetadataImpl;
+import org.hibernate.engine.spi.SessionFactoryImplementor;
+import org.hibernate.internal.SessionFactoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -150,7 +153,7 @@ public class ApplicationContextConfig {
     }
 
     @Bean
-    public Renderer renderer(){
+    public Renderer renderer() {
         return HtmlRenderer.builder()
                 .extensions(extensions())
                 .escapeHtml(true)
@@ -158,7 +161,7 @@ public class ApplicationContextConfig {
     }
 
     @Bean
-    public List<Extension> extensions(){
+    public List<Extension> extensions() {
         return Collections.singletonList(TablesExtension.create());
     }
 

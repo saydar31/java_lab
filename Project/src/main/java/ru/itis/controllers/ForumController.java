@@ -3,6 +3,7 @@ package ru.itis.controllers;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,9 @@ import ru.itis.dto.RecordDto;
 import ru.itis.model.User;
 import ru.itis.security.details.UserDetailsImpl;
 import ru.itis.service.ForumService;
+
+import javax.validation.Valid;
+import java.util.Arrays;
 
 @Controller
 public class ForumController {
@@ -43,19 +47,21 @@ public class ForumController {
 
     @GetMapping("/forum/{forum-id:\\d+}")
     @PreAuthorize("permitAll()")
-    public ModelAndView getForumDiscussionPage(@PathVariable("forum-id") Long id,PageSizeDto pageSizeDto) {
+    public ModelAndView getForumDiscussionPage(@PathVariable("forum-id") Long id, PageSizeDto pageSizeDto) {
         ModelAndView modelAndView = new ModelAndView("forumDiscussion");
+        modelAndView.addObject("recordDto", new RecordDto());
         modelAndView.addObject("discussion", forumService.getForumDiscussionPaginatedRecords(id, pageSizeDto));
         modelAndView.addObject("page", pageSizeDto.getP());
         modelAndView.addObject("size", pageSizeDto.getP());
         return modelAndView;
     }
 
-    @PostMapping("/forum/{forum-id:\\d+}")
+   // @PostMapping("/forum/{forum-id:\\d+}")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView addRecord(RecordDto recordDto, Authentication authentication, @PathVariable("forum-id") Long id) {
+    public ModelAndView addRecord(@Valid RecordDto recordDto, BindingResult bindingResult, Authentication authentication, @PathVariable("forum-id") Long id) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         User user = userDetails.getUser();
+        System.out.println(Arrays.toString(bindingResult.getAllErrors().toArray()));
         forumService.add(recordDto, user, id);
         return new ModelAndView("redirect:/forum/" + id);
     }

@@ -87,7 +87,7 @@ public class ForumServiceImpl implements ForumService {
     }
 
     @Override
-    public void add(RecordDto recordDto, User user, Long discussionId) {
+    public ForumDiscussionRecordDto add(RecordDto recordDto, User user, Long discussionId) {
         Optional<ForumDiscussion> forumDiscussionOptional = forumDiscussionRepository.find(discussionId);
         if (forumDiscussionOptional.isPresent()) {
             ForumDiscussion forumDiscussion = forumDiscussionOptional.get();
@@ -100,6 +100,9 @@ public class ForumServiceImpl implements ForumService {
             forumDiscussion.getRecords().add(forumDiscussionRecord);
             forumDiscussion.setLastChange(forumDiscussionRecord.getDate());
             forumDiscussionRepository.update(forumDiscussion);
+            return ForumDiscussionRecordDto.from(forumDiscussionRecord);
+        }else {
+            throw new IllegalArgumentException("no such discussion");
         }
     }
 

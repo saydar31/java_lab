@@ -12,5 +12,15 @@
     <context:component-scan base-package="ru.itis"/>
     <aop:aspectj-autoproxy/>
     <mvc:annotation-driven/>
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <bean id="localeChangeInterceptor"
+                  class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+                <property name="paramName" value="lang" />
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <security:global-method-security pre-post-annotations= "enabled" secured-annotations= "enabled" jsr250-annotations= "enabled"/>
 </beans>
