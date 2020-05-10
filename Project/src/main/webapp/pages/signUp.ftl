@@ -1,5 +1,6 @@
 <html>
 <head>
+    <#import "/spring.ftl" as spring/>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -69,6 +70,10 @@
         display: table;
     }
 
+    .error{
+        color: #f44336;
+    }
+
     /* Change styles for cancel button and signup button on extra small screens */
     @media screen and (max-width: 300px) {
         .cancelbtn, .signupbtn {
@@ -77,30 +82,22 @@
     }
 </style>
 <body>
+<@spring.bind "signUpDto"/>
 <form action="/sign_up" method="post" style="border:1px solid #ccc">
     <input hidden type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <div class="container">
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
         <hr>
-
         <label for="email"><b>Email</b></label>
         <label>
-            <input type="text" placeholder="Enter Email" name="email" required>
+            <@spring.formInput "signUpDto.email"/>
+            <@spring.showErrors "<br>","error"/>
         </label>
-
         <label for="psw"><b>Password</b></label>
         <label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-        </label>
-
-        <label for="psw-repeat"><b>Repeat Password</b></label>
-        <label>
-            <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-        </label>
-
-        <label>
-            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+            <@spring.formPasswordInput "signUpDto.password"/>
+            <@spring.showErrors "<br>","error"/>
         </label>
         <div class="clearfix">
             <button type="submit" class="signupbtn">Sign Up</button>

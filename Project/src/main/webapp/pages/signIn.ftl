@@ -12,6 +12,7 @@
     <input hidden type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <label><@spring.message "sign.in.email.field"/>:<input type="email" name="email"></label><br>
     <label><@spring.message "sign.in.password.field"/>:<input type="password" name="password"></label><br>
+    <label><@spring.message "sign.in.remember-me"/>:<input type="checkbox" name="remember-me"></label>
     <input type="submit" value="<@spring.message "sign.in.title"></@spring.message>">
 </form>
 </body>

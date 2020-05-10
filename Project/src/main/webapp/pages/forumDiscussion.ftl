@@ -34,15 +34,19 @@
 <a href="/forum/${discussion.id}?p=${page+1}&s=${size}">
     <button><</button>
 </a>
-<#list discussion.records as forumRecord>
-    <div class="outline">
-        <p>${forumRecord.user.firstName} ${forumRecord.user.lastName}: ${forumRecord.date.month}
-            /${forumRecord.date.dayOfMonth}/${forumRecord.date.year} ${forumRecord.date.hour}:${forumRecord.date.minute}
-            :${forumRecord.date.second}</p>
-        <hr>
-        <p>${forumRecord.message}</p>
-    </div>
-</#list>
+<div id="discussion">
+    <#list discussion.records as forumRecord>
+        <div class="outline">
+            <p>${forumRecord.user.firstName} ${forumRecord.user.lastName}: ${forumRecord.date.month}
+                /${forumRecord.date.dayOfMonth}/${forumRecord.date.year} ${forumRecord.date.hour}
+                :${forumRecord.date.minute}
+                :${forumRecord.date.second}</p>
+            <hr>
+            <p>${forumRecord.message}</p>
+        </div>
+    </#list>
+</div>
+
 <style>
     .error {
         color: #f44336;
@@ -69,9 +73,10 @@
                 data: JSON.stringify(body),
                 error: function (error) {
                     console.log(JSON.stringify(error))
-                    let json = console.log(error['responseText'])
-                    let body = JSON.parse(json);
-                    $('#errorPlace').val(body['message']).show()
+                    let responseText = error['responseText']
+                    let result = JSON.parse(responseText);
+                    $('#errorPlace').text(result['message'])
+                    $('#errorPlace').show()
                 },
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader(header, token)
@@ -80,7 +85,8 @@
         ).done(function (response) {
             console.log(JSON.stringify(response))
             let userName = response['user']['firstName'] + " " + response['user']['lastName'];
-            let time = date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+            let time = response['date']['month'] + "/" + response['date']['dayOfMonth'] + "/" + response['date']['year'] + " " +
+                response['date']['hour'] + ":" + response['date']['minute'] + ":" + response['date']['second']
             let authorHead = "<p>" + userName + ": " + time + "</p>";
             let message = "<p>" + response['message'] + "</p>";
             $("#discussion").append("<div class='outline'> " + authorHead + "<hr>" + message + "</div>");

@@ -14,6 +14,6 @@ import javax.validation.constraints.Min;
 public class PageSizeDto {
     @Min(value = 0)
     private Integer p;
-    @Min(1)
+    @Min(value = 1)
     private Integer s;
 }

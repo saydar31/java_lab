@@ -56,6 +56,7 @@ public class ForumController {
         return modelAndView;
     }
 
+
    // @PostMapping("/forum/{forum-id:\\d+}")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView addRecord(@Valid RecordDto recordDto, BindingResult bindingResult, Authentication authentication, @PathVariable("forum-id") Long id) {

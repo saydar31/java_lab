@@ -3,6 +3,7 @@ package ru.itis.service;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import ru.itis.dto.SignUpDto;
 import ru.itis.model.Role;
 import ru.itis.model.User;
 import ru.itis.repositories.UserRepository;
@@ -35,5 +36,10 @@ public class SignUpServiceImpl implements SignUpService {
                 .build();
         userRepository.save(user);
         mailService.sendSignUpLetter(user, confirmationService.getVerificationString(user));
+    }
+
+    @Override
+    public void signUp(SignUpDto signUpDto) {
+        signUp(signUpDto.getEmail(),signUpDto.getPassword());
     }
 }
