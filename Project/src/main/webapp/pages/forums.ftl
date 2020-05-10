@@ -1,10 +1,11 @@
 <html lang="en">
 <head>
-    <title>forums</title>
+    <#import "/spring.ftl" as spring/>
+    <title><@spring.message "forum.title"/></title>
     <meta charset="UTF-8">
 </head>
 <body>
-<h1>Subjects</h1><br>
+<h1><@spring.message "forum.subjects"/></h1><br>
 <form action="/forum" method="post">
     <input hidden type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <label>

@@ -11,8 +11,8 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 @Data
 public class DiscussionDto {
-    @NotEmpty(message = "error.wrong.discussionName")
+    @NotEmpty
     private String name;
-    @Pattern(regexp = "(.+;)+",message = "error.wrong.tags")
+    @Pattern(regexp = "(.+;)+")
     private String tags;
 }

@@ -13,8 +13,8 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @Builder
 public class SignInDto {
-    @Email(message = "error.wrong.email")
+    @Email
     private String email;
-    @NotEmpty(message = "error.wrong.password")
+    @NotEmpty
     private String password;
 }

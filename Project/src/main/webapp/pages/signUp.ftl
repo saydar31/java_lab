@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up</title>
+    <title><@spring.message "signUp.title"/></title>
 </head>
 <style>
     * {box-sizing: border-box}
@@ -86,21 +86,21 @@
 <form action="/sign_up" method="post" style="border:1px solid #ccc">
     <input hidden type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <div class="container">
-        <h1>Sign Up</h1>
-        <p>Please fill in this form to create an account.</p>
+        <h1><@spring.message "signUp.title"/></h1>
+        <p><@spring.message "signUp.description"/></p>
         <hr>
-        <label for="email"><b>Email</b></label>
+        <label for="email"><b><@spring.message "signUp.email"/></b></label>
         <label>
             <@spring.formInput "signUpDto.email"/>
             <@spring.showErrors "<br>","error"/>
         </label>
-        <label for="psw"><b>Password</b></label>
+        <label for="psw"><b><@spring.message "signUp.password"/></b></label>
         <label>
             <@spring.formPasswordInput "signUpDto.password"/>
             <@spring.showErrors "<br>","error"/>
         </label>
         <div class="clearfix">
-            <button type="submit" class="signupbtn">Sign Up</button>
+            <button type="submit" class="signupbtn"><@spring.message "signUp.title"/></button>
         </div>
     </div>
 </form>

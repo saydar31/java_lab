@@ -1,6 +1,7 @@
 <html lang="en">
 <head>
     <title>${discussion.name}</title>
+    <#import "/spring.ftl" as spring/>
     <meta charset="UTF-8">
     <#import "spring.ftl" as spring/>
     <meta name="_csrf" content="${_csrf.token}"/>

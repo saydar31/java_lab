@@ -6,6 +6,12 @@
 
 [Видео демонстрация функционала форума](https://drive.google.com/open?id=1uUFV6pAeAvd_K1xAXvWm_OIH85XM2xEY)
 
+[csrf, validation, i18n](https://drive.google.com/open?id=13bH7uBu7DoG2mqPzlWmTecH1kLmgaelr)
+
+[i18n rest](https://drive.google.com/open?id=16FnO6w2jgbt1023Nqj0rObzgjcy6UUS5)
+
+[Spring Session Jdbc](https://drive.google.com/open?id=1HSTeOh_JJ-oLQzJdXyJ3mWXd2elWA8f-)
+
 Работа Spring Security 
 
 [Страница админа с админом](https://drive.google.com/open?id=1hss-OZU-gzfWqrNXCCaeMDkNEvRt_qTB)
@@ -19,3 +25,4 @@ Long polling
 WebSocket
 
 [Видео](https://drive.google.com/open?id=12KNsHyYkReEMKDLNoSPSXB8NaI9pZKvU)
+
