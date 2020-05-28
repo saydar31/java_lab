@@ -49,7 +49,15 @@ public class UploadFileRepositoryJdbcTemplateImpl implements UploadFileRepositor
         String passwordHash = resultSet.getString("password_hash");
         Boolean isProofed = resultSet.getBoolean("is_proofed");
         Role role = Role.valueOf(resultSet.getString("role"));
-        User user = new User(userId, firstName, lastName, email, passwordHash, isProofed, role);
+        User user = User.builder().
+                id(userId)
+                .firstName(firstName)
+                .lastName(lastName)
+                .email(email)
+                .passWordHash(passwordHash)
+                .proofed(isProofed)
+                .role(role)
+                .build();
         return new UploadFile(id, originalName, currentPath, user);
     });
 

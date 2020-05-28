@@ -14,7 +14,7 @@ import java.util.Optional;
 @Component
 public class UserServiceImpl implements UserService {
 
-    @Qualifier("userRepositoryJdbcTemplateImpl")
+    @Qualifier("userRepositoryJpaImpl")
     @Autowired
     private UserRepository userRepository;
 
@@ -34,8 +34,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUserById(Long id) {
-        Optional<User> userOptional = userRepository.find(id);
-        return userOptional.map(UserDto::from).orElse(null);
+       return userRepository.getOneDtoById(id);
     }
 
 

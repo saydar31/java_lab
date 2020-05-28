@@ -1,6 +1,7 @@
 package ru.itis.repositories;
 
 import org.springframework.stereotype.Component;
+import ru.itis.dto.UserDto;
 import ru.itis.model.User;
 
 import javax.persistence.EntityManager;
@@ -18,7 +19,7 @@ public class UserRepositoryEntityManagerImpl implements UserRepository {
     @Override
     @Transactional
     public List<User> getUsers(int page, int size) {
-        return  entityManager.createQuery("select usr from User usr order by usr.id",User.class).setFirstResult(size * page).setMaxResults(size).getResultList();
+        return entityManager.createQuery("select usr from User usr order by usr.id", User.class).setFirstResult(size * page).setMaxResults(size).getResultList();
     }
 
     @Override
@@ -52,7 +53,7 @@ public class UserRepositoryEntityManagerImpl implements UserRepository {
     @Override
     @Transactional
     public List<User> getAll() {
-        return entityManager.createQuery("select usr from User usr order by usr.id",User.class).getResultList();
+        return entityManager.createQuery("select usr from User usr order by usr.id", User.class).getResultList();
     }
 
     @Override
@@ -65,5 +66,10 @@ public class UserRepositoryEntityManagerImpl implements UserRepository {
     @Transactional
     public void delete(User entity) {
         entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
+    }
+
+    @Transactional
+    public UserDto getOneDtoById(Long id) {
+        return entityManager.createQuery("select new ru.itis.dto.UserDto(user.id,user.firstName,user.lastName,user.email,user.proofed) from User user where user.id=:id", UserDto.class).setParameter("id",id).getSingleResult();
     }
 }

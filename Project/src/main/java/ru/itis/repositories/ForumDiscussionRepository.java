@@ -11,7 +11,6 @@ public interface ForumDiscussionRepository extends CrudRepository<ForumDiscussio
 
     List<ForumDiscussion> getForumDiscussions(int page, int size);
 
-    void deleteForumRecordById(Long id);
 
     List<ForumDiscussion> findByTags(Collection<String> tags);
 }

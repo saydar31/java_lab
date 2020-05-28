@@ -12,8 +12,4 @@ import javax.sql.DataSource;
 @Configuration
 @EnableJdbcHttpSession
 public class SpringSessionJdbcConfig extends AbstractHttpSessionApplicationInitializer {
-    @Bean
-    public PlatformTransactionManager transactionManager(DataSource dataSource) {
-        return new DataSourceTransactionManager(dataSource);
-    }
 }

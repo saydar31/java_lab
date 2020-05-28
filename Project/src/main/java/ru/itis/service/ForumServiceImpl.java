@@ -5,8 +5,10 @@ import ru.itis.dto.*;
 import ru.itis.model.ForumDiscussion;
 import ru.itis.model.ForumDiscussionRecord;
 import ru.itis.model.User;
+import ru.itis.repositories.ForumDiscussionRecordRepository;
 import ru.itis.repositories.ForumDiscussionRepository;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -16,9 +18,11 @@ import java.util.stream.Collectors;
 @Component
 public class ForumServiceImpl implements ForumService {
     private final ForumDiscussionRepository forumDiscussionRepository;
+    private final ForumDiscussionRecordRepository forumDiscussionRecordRepository;
 
-    public ForumServiceImpl(ForumDiscussionRepository forumDiscussionRepository) {
+    public ForumServiceImpl(ForumDiscussionRepository forumDiscussionRepository, ForumDiscussionRecordRepository forumDiscussionRecordRepository) {
         this.forumDiscussionRepository = forumDiscussionRepository;
+        this.forumDiscussionRecordRepository = forumDiscussionRecordRepository;
     }
 
     @Override
@@ -87,6 +91,7 @@ public class ForumServiceImpl implements ForumService {
     }
 
     @Override
+    @Transactional
     public ForumDiscussionRecordDto add(RecordDto recordDto, User user, Long discussionId) {
         Optional<ForumDiscussion> forumDiscussionOptional = forumDiscussionRepository.find(discussionId);
         if (forumDiscussionOptional.isPresent()) {
@@ -97,17 +102,17 @@ public class ForumServiceImpl implements ForumService {
                     .date(LocalDateTime.now())
                     .user(user)
                     .build();
+            forumDiscussionRecordRepository.save(forumDiscussionRecord);
             forumDiscussion.getRecords().add(forumDiscussionRecord);
             forumDiscussion.setLastChange(forumDiscussionRecord.getDate());
-            forumDiscussionRepository.update(forumDiscussion);
             return ForumDiscussionRecordDto.from(forumDiscussionRecord);
-        }else {
+        } else {
             throw new IllegalArgumentException("no such discussion");
         }
     }
 
     @Override
     public void delete(Long recordId) {
-        forumDiscussionRepository.deleteForumRecordById(recordId);
+        forumDiscussionRecordRepository.deleteById(recordId);
     }
 }

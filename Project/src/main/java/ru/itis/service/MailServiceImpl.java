@@ -17,8 +17,8 @@ import java.util.Map;
 @Component
 public class MailServiceImpl implements MailService {
 
-    private EmailSender emailSender;
-    private Configuration configuration;
+    private final EmailSender emailSender;
+    private final Configuration configuration;
 
     public MailServiceImpl(EmailSender emailSender, Configuration configuration) {
         this.emailSender = emailSender;

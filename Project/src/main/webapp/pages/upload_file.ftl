@@ -1,6 +1,8 @@
 <html lang="en">
+<#import "/spring.ftl" as spring/>
 <head>
-    <title>File</title>
+    <title><@spring.message "upload.title"/></title>
+    <meta charset="UTF-8">
     <meta name="_csrf" content="${_csrf.token}"/>
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
 </head>
@@ -40,7 +42,7 @@
 <div>
     <input type="file" id="file" name="file" placeholder="Имя файла..."/>
     <button onclick="sendFile()">
-        Загрузить файл
+        <@spring.message "upload.button"/>
     </button>
     <input type="hidden" id="file_hidden">
     <div class="filename"></div>

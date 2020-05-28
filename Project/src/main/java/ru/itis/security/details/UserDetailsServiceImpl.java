@@ -16,7 +16,7 @@ import java.util.Optional;
 @Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Qualifier("userRepositoryJdbcTemplateImpl")
+    @Qualifier("userRepositoryJpaImpl")
     @Autowired
     private UserRepository userRepository;
 

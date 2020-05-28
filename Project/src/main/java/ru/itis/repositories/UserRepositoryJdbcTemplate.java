@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import ru.itis.dto.UserDto;
 import ru.itis.model.Role;
 import ru.itis.model.User;
 
@@ -51,7 +52,15 @@ public class UserRepositoryJdbcTemplate implements UserRepository {
         String passwordHash = resultSet.getString("password_hash");
         boolean proofed = resultSet.getBoolean("is_proofed");
         Role role = Role.valueOf(resultSet.getString("role"));
-        return new User(id, firstName, lastName, email, passwordHash, proofed, role);
+        return User.builder().
+                id(id)
+                .firstName(firstName)
+                .lastName(lastName)
+                .email(email)
+                .passWordHash(passwordHash)
+                .proofed(proofed)
+                .role(role)
+                .build();
     };
 
     public UserRepositoryJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -92,5 +101,10 @@ public class UserRepositoryJdbcTemplate implements UserRepository {
     @Override
     public void makeProofed(User user) {
         jdbcTemplate.update(SQL_MAKE_PROOFED, user.getId());
+    }
+
+    @Override
+    public UserDto getOneDtoById(Long id) {
+        return null;
     }
 }

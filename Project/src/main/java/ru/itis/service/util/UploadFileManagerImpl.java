@@ -20,7 +20,9 @@ public class UploadFileManagerImpl implements UploadFileManager {
     @Override
     public void saveToStorage(MultipartFile multipartFile, String newFileName) {
         try {
-            File file = new File(uploadPath + newFileName);
+            File file = new File(uploadPath +File.separator+ newFileName);
+            //noinspection ResultOfMethodCallIgnored
+            file.mkdirs();
             //noinspection ResultOfMethodCallIgnored
             file.createNewFile();
             multipartFile.transferTo(file);

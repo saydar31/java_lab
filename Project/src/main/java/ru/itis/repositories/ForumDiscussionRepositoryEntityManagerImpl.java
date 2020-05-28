@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-@Transactional
 public class ForumDiscussionRepositoryEntityManagerImpl implements ForumDiscussionRepository {
     @PersistenceContext
     private EntityManager entityManager;
@@ -20,6 +19,7 @@ public class ForumDiscussionRepositoryEntityManagerImpl implements ForumDiscussi
     @Override
     @Transactional
     public void save(ForumDiscussion entity) {
+        entity.setOwner(entityManager.merge(entity.getOwner()));
         entityManager.persist(entity);
     }
 
@@ -58,15 +58,6 @@ public class ForumDiscussionRepositoryEntityManagerImpl implements ForumDiscussi
     @Transactional
     public List<ForumDiscussion> getForumDiscussions(int page, int size) {
         return entityManager.createQuery("select forumDiscussion from ForumDiscussion forumDiscussion order by forumDiscussion.lastChange desc", ForumDiscussion.class).setFirstResult(size * page).setMaxResults(size).getResultList();
-    }
-
-    @Override
-    @Transactional
-    public void deleteForumRecordById(Long id) {
-        ForumDiscussionRecord forumDiscussionRecord = entityManager.find(ForumDiscussionRecord.class, id);
-        forumDiscussionRecord.getForumDiscussion().getRecords().remove(forumDiscussionRecord);
-        entityManager.merge(forumDiscussionRecord.getForumDiscussion());
-        entityManager.remove(forumDiscussionRecord);
     }
 
     @Override

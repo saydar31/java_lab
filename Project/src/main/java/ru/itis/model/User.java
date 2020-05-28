@@ -33,14 +33,22 @@ public class User implements Serializable {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
+    @Column(name = "age")
+    private Integer age;
+    @Column(name = "experience")
+    private Integer experience;
 
-    public static User from(UserDto userDto) {
-        return User.builder()
-                .id(userDto.getId())
-                .email(userDto.getEmail())
-                .firstName(userDto.getFirstName())
-                .lastName(userDto.getLastName())
-                .proofed(userDto.isProofed())
-                .build();
+    @Transient
+    private Double ageExperiencePercentage;
+
+    @Transient
+    private Integer joblessYears;
+
+    @PostLoad
+    public void init() {
+        if (age != null && experience != null) {
+            ageExperiencePercentage = (1.0 * experience) / age;
+            joblessYears = age - experience;
+        }
     }
 }

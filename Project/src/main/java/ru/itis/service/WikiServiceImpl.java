@@ -77,7 +77,17 @@ public class WikiServiceImpl implements WikiService {
 
     @Override
     public WikiFolderDto getBaseFolder() {
-        return getFolderById(1L);
+        Optional<WikiFolder> wikiFolderOptional = wikiFolderRepository.find(1L);
+        if (wikiFolderOptional.isPresent()) {
+            return WikiFolderDto.from(wikiFolderOptional.get());
+        } else {
+            WikiFolder wikiFolder = WikiFolder.builder()
+                    .name("BaseFolder")
+                    .build();
+            wikiFolderRepository.save(wikiFolder);
+            wikiFileManager.createFolder(wikiFolder);
+            return WikiFolderDto.from(wikiFolder);
+        }
     }
 
     @Override

@@ -9,8 +9,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,4 +31,15 @@ public class ForumDiscussion {
     @ManyToOne
     private User owner;
     private LocalDateTime lastChange;
+    @Transient
+    private String oneLineTags;
+
+    @PostLoad
+    public void concatTags() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String tag : tags) {
+            stringBuilder.append(tag).append(";");
+        }
+        oneLineTags = stringBuilder.toString();
+    }
 }

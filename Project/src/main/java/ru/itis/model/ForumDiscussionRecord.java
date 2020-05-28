@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @Table(name = "forum_discussion_records")
-public class ForumDiscussionRecord implements Comparable<ForumDiscussionRecord> {
+public class ForumDiscussionRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,9 +24,4 @@ public class ForumDiscussionRecord implements Comparable<ForumDiscussionRecord> 
     private LocalDateTime date;
     @ManyToOne
     private ForumDiscussion forumDiscussion;
-
-    @Override
-    public int compareTo(ForumDiscussionRecord forumDiscussionRecord) {
-        return date.compareTo(forumDiscussionRecord.date);
-    }
 }

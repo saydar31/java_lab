@@ -14,7 +14,7 @@ public class UserApiController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/api/user/{user-id}")
+    @GetMapping("/api/user/{user-id:\\d+}")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<UserDto> getUserById(@PathVariable("user-id") Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
