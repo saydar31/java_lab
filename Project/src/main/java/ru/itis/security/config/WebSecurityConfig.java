@@ -2,16 +2,20 @@ package ru.itis.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AnonymousAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
@@ -24,63 +28,97 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Configuration
+    @Order(1)
+    public static class RestSecurityConfig extends WebSecurityConfigurerAdapter {
+        @Autowired
+        @Qualifier("jwtAuthenticationProvider")
+        private AuthenticationProvider authenticationProvider;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+        @Autowired
+        @Qualifier(value = "jwtAuthenticationFilter")
+        private GenericFilterBean jwtAuthenticationFilter;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private AuthenticationProvider authenticationProvider;
+        @Override
+        public void configure(WebSecurity web) throws Exception {
+            web.ignoring();
+        }
 
-    @Autowired
-    @Qualifier(value = "jwtAuthenticationFilter")
-    private GenericFilterBean jwtAuthenticationFilter;
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http
+                    .antMatcher("/api/**")
+                    .cors()
+                    .and()
+                    .csrf().disable()
+                    .addFilterAt(jwtAuthenticationFilter, AnonymousAuthenticationFilter.class)
+                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+            http.formLogin().disable();
+            http.logout().disable();
+            http.httpBasic().disable();
+        }
 
-    @Autowired
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
-        auth.authenticationProvider(authenticationProvider);
+        @Autowired
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+            auth.authenticationProvider(authenticationProvider);
+        }
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .anyRequest().permitAll()
-                .and()
-                .httpBasic()
-                .and()
-                .csrf().ignoringAntMatchers("/api/**");
 
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+    @Configuration
+    @Order(2)
+    public static class MvcSecurityConfig extends WebSecurityConfigurerAdapter {
+        @Autowired
+        @Qualifier("customUserDetailsService")
+        private UserDetailsService userDetailsService;
 
-        http.formLogin()
-                .loginPage("/sign_in")
-                .loginProcessingUrl("/sign_in")
-                .usernameParameter("email")
-                .defaultSuccessUrl("/")
-                .failureUrl("/sign_in?error")
-                .permitAll();
+        @Autowired
+        private PasswordEncoder passwordEncoder;
 
-        http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/exit"))
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID", "SESSION", "remember-me")
-                .logoutSuccessUrl("/sign_in?logout");
+        @Autowired
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+            auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+        }
 
-        http.rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository());
+        @Autowired
+        public void registerGlobalAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+            auth
+                    .userDetailsService(userDetailsService)
+                    .passwordEncoder(passwordEncoder);
+        }
 
-        http.addFilterBefore(jwtAuthenticationFilter, BasicAuthenticationFilter.class);
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.antMatcher("/**");
+            http.authorizeRequests().and()
+                    .rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository());
+            http.formLogin()
+                    .loginPage("/sign_in")
+                    .usernameParameter("email")
+                    .passwordParameter("password")
+                    .defaultSuccessUrl("/")
+                    .failureUrl("/login?error")
+                    .permitAll();
+            http.addFilter(new AnonymousAuthenticationFilter("anonymous"));
+            http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/login")
+                    .deleteCookies("JSESSIONID", "remember-me")
+                    .invalidateHttpSession(true);
+
+
+        }
+
+        @Autowired
+        private DataSource dataSource;
+
+        @Bean
+        public PersistentTokenRepository persistentTokenRepository() {
+            JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+            jdbcTokenRepository.setDataSource(dataSource);
+            return jdbcTokenRepository;
+        }
     }
-
-    @Autowired
-    private DataSource dataSource;
-
-    private PersistentTokenRepository persistentTokenRepository() {
-        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
-        jdbcTokenRepository.setDataSource(dataSource);
-        return jdbcTokenRepository;
-    }
-
 }

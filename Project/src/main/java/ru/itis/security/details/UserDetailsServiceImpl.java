@@ -12,7 +12,7 @@ import ru.itis.repositories.UserRepository;
 
 import java.util.Optional;
 
-@Component
+@Component("customUserDetailsService")
 @Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
 

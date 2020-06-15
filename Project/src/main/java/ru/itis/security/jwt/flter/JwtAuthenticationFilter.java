@@ -18,11 +18,9 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-        if (request.getRequestURI().matches("/api/.*") && !request.getRequestURI().equals("/api/login")) {
-            String token = request.getHeader("Authorization");
-            Authentication authentication = JwtAuthenticationImpl.builder().token(token).build();
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        }
+        String token = request.getHeader("Authorization");
+        Authentication authentication = JwtAuthenticationImpl.builder().token(token).build();
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }
