@@ -25,6 +25,12 @@ public class FilmCheckImpl implements FilmCheck {
 
     @Override
     public void buy(PurchaseDto purchaseDto) {
+        if (purchaseDto.getFilmId() == null) {
+            purchaseDto.setFilmId(1L);
+        }
+        if (purchaseDto.getUserId() == null) {
+            purchaseDto.setUserId(1L);
+        }
         Optional<User> userOptional = userRepository.findById(purchaseDto.getUserId());
         User user = userOptional.orElse(User.builder()
                 .id(1L)
@@ -32,11 +38,12 @@ public class FilmCheckImpl implements FilmCheck {
                 .lastName("shaydulin")
                 .mail("saidar31@yandex.ru")
                 .build());
+
         Optional<Film> filmOptional = filmRepository.findById(purchaseDto.getFilmId());
         Film film = filmOptional.orElseThrow(FilmNotFoundException::new);
         Map<String, Object> model = new HashMap<>();
         model.put("film", film);
         model.put("user", user);
-        pdfService.createPdf(model, "filmCheck", UUID.randomUUID().toString() + ".pdf");
+        pdfService.createPdf(model, "filmCheck", "bf-" + UUID.randomUUID().toString() + ".pdf");
     }
 }

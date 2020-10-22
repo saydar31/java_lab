@@ -28,6 +28,5 @@ public class FilmController {
     @PostMapping("/film")
     public void addFilm(@RequestBody FilmDto filmDto) {
         filmService.add(filmDto);
-        log.info(filmDto.toString());
     }
 }

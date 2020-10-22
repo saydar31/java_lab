@@ -17,6 +17,6 @@ public class PremiumSubscriptionCheckServiceImpl implements PremiumSubscriptionC
         Map<String,Object> model = new HashMap<>();
         model.put("user",userSubscription.getUser());
         model.put("subscription",userSubscription.getSubscriptionDto());
-        pdfService.createPdf(model,"premium", UUID.randomUUID().toString()+".pdf");
+        pdfService.createPdf(model,"premium", "ps-"+UUID.randomUUID().toString()+".pdf");
     }
 }
