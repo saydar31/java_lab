@@ -20,4 +20,5 @@ public class Subscription {
     private User user;
     @ManyToOne
     private University university;
+    private Double price;
 }

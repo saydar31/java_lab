@@ -6,11 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.itis.hateoas.models.AccessLevel;
@@ -18,13 +14,11 @@ import ru.itis.hateoas.models.Course;
 import ru.itis.hateoas.models.University;
 import ru.itis.hateoas.repositories.CourseRepository;
 import ru.itis.hateoas.repositories.UniversityRepository;
-import ru.itis.hateoas.services.VoteService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import static org.mockito.Mockito.when;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -32,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-@AutoConfigureRestDocs(outputDir = "target/snippets")
+@AutoConfigureRestDocs(outputDir = "target/generated-snippets")
 @AutoConfigureMockMvc
 public class UpvoteTest {
     @Autowired
@@ -45,7 +39,7 @@ public class UpvoteTest {
     @BeforeEach
     public void setUp() {
         Course course = course();
-        University university=course.getUniversity();
+        University university = course.getUniversity();
         university.setCourses(null);
         universityRepository.save(university);
         courseRepository.save(course);
@@ -57,7 +51,8 @@ public class UpvoteTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Java"))
-                .andExpect(jsonPath("$.rate").value(1001));
+                .andExpect(jsonPath("$.rate").value(1001))
+                .andDo(document("upvote"));
     }
 
     private Course course() {

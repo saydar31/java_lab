@@ -8,7 +8,6 @@ import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDoc
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.itis.hateoas.models.*;
@@ -18,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -26,8 +28,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 @SpringBootTest
-@AutoConfigureRestDocs(outputDir = "target/snippets")
-public class ReportSatisfyTest {
+@AutoConfigureRestDocs(outputDir = "target/generated-snippets")
+public class ReportSatisfyRejectTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -37,16 +39,38 @@ public class ReportSatisfyTest {
     @BeforeEach()
     public void setUp() {
         when(reportService.satisfy(1L)).thenReturn(satisfiedReport());
+        when(reportService.reject(2L)).thenReturn(rejectedReport());
     }
 
     @Test
-    public void test() throws Exception {
+    public void testSatisfy() throws Exception {
         mockMvc.perform(put("/reports/1/satisfy"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.email").value(satisfiedReport().getEmail()))
                 .andExpect(jsonPath("$.reportAction").value(satisfiedReport().getReportAction().name()))
-                .andExpect(jsonPath("$.reportStatus").value(satisfiedReport().getReportStatus().name()));
+                .andExpect(jsonPath("$.reportStatus").value(satisfiedReport().getReportStatus().name()))
+                .andDo(document("satisfy", responseFields(
+                        fieldWithPath("email").description("почта куда отправится сообещение об отказе"),
+                        fieldWithPath("reportAction").description("Действие жалобы: \"SUBSCRIPTION_ONLY\"(открыть доступ по подписке), \"BAN\"(закрыть доступ)"),
+                        fieldWithPath("reportStatus").description("Статус жалобы: \"SATISFIED\"(удовлетварена), \"REJECTED\"(отказано),\"UNREVIEWED\" не рассмотрена")
+                )));
+    }
+
+    @Test
+    public void testReject() throws Exception {
+        Report rejectedReport = rejectedReport();
+        mockMvc.perform(put("/reports/2/reject"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.email").value(rejectedReport.getEmail()))
+                .andExpect(jsonPath("$.reportAction").value(rejectedReport.getReportAction().name()))
+                .andExpect(jsonPath("$.reportStatus").value(rejectedReport.getReportStatus().name()))
+                .andDo(document("reject", responseFields(
+                        fieldWithPath("email").description("почта куда отправится сообещение об отказе"),
+                        fieldWithPath("reportAction").description("Действие жалобы: \"SUBSCRIPTION_ONLY\"(открыть доступ по подписке), \"BAN\"(закрыть доступ)"),
+                        fieldWithPath("reportStatus").description("Статус жалобы: \"SATISFIED\"(удовлетварена), \"REJECTED\"(отказано),\"UNREVIEWED\" не рассмотрена")
+                )));
     }
 
     private Report satisfiedReport() {
@@ -71,6 +95,12 @@ public class ReportSatisfyTest {
                 .build();
         course.setUniversity(university);
         report.setCourse(course);
+        return report;
+    }
+
+    private Report rejectedReport() {
+        Report report = satisfiedReport();
+        report.setReportStatus(ReportStatus.REJECTED);
         return report;
     }
 }

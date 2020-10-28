@@ -1,0 +1,72 @@
+= Описание API по жалобам
+
+== Методы
+
+|===
+|Метод | Назначение
+|`PUT`
+|Обновить сущность или ее состояние
+|`GET`|Получить сущность или список сущностей
+|===
+
+=== Удовлетворение жалобы
+
+Можно можно удовлетварить жалобу со статусом *UNREVIEWED*
+
+.request
+
+include::{snippets}\satisfy\http-request.adoc[]
+
+.response
+
+include::{snippets}\satisfy\http-response.adoc[]
+
+.response-body
+
+include::{snippets}\satisfy\response-fields.adoc[]
+
+=== Отказ жалобы
+
+Можно отказать жалобе со статусом *UNREVIEWED*
+
+.request
+
+include::{snippets}\reject\http-request.adoc[]
+
+.response
+
+include::{snippets}\reject\http-response.adoc[]
+
+.response-body
+
+include::{snippets}\reject\response-fields.adoc[]
+
+=== Апвоут
+
+Можно проголосовать за курс
+
+.request
+
+include::{snippets}\upvote\http-request.adoc[]
+
+.response
+
+include::{snippets}\upvote\http-response.adoc[]
+
+.response-body
+
+include::{snippets}\upvote\response-body.adoc[]
+
+=== Получить все не рассмотренные жалобы
+
+.request
+
+include::{snippets}\unreviewed\http-request.adoc[]
+
+.response
+
+include::{snippets}\unreviewed\http-response.adoc[]
+
+.response-body
+
+include::{snippets}\unreviewed\response-fields.adoc[]
