@@ -1,0 +1,14 @@
+GET http://localhost:8080/search?isFree=true
+
+###
+GET http://localhost:8080
+
+###
+POST http://localhost:8080/
+Content-Type: application/json
+
+{
+  "name": "math",
+  "rating": 10,
+  "isFree": true
+}

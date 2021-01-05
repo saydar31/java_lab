@@ -20,19 +20,7 @@ public class SubscriptionStatisticsServiceImpl implements SubscriptionStatistics
 
     @Override
     public void makeStatistics(UserSubscription userSubscription) {
-        if (userSubscription.getUser() == null) {
-            userSubscription.setUser(User.builder()
-                    .firstName("aydar")
-                    .lastName("shaydullin")
-                    .id(1L)
-                    .mail("mail")
-                    .build());
-        }
-        if (userSubscription.getSubscriptionDto() == null) {
-            userSubscription.setSubscriptionDto(SubscriptionDto.builder()
-                    .monthCount(2)
-                    .subscriptionType(SubscriptionType.PREMIUM).build());
-        }
+
         if (userSubscription.getSubscriptionDto().getSubscriptionType().equals(SubscriptionType.PREMIUM)) {
             premiumCount++;
         } else {
